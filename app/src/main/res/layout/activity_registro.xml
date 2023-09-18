@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userInterface.Activity.RegistroDatosActivity">
+
+    <TextView
+        android:id="@+id/encabezado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/abril_fatface"
+        android:text="MAKJANÉH HASHEKJEN YAH"
+        android:textColor="@color/secundario"
+        android:textSize="@dimen/AppComunidad"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <LinearLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/lineaGuia2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/lineaGuia1">
+
+        <TextView
+            android:id="@+id/nombreCompleto"
+            style="@style/texto_general"
+            android:text="Nombre y apellido" />
+
+        <EditText
+            android:id="@+id/ingresarNombreCompleto"
+            style="@style/ingreso_inicio_registro"
+            android:ems="10"
+            android:hint="Ingresa tu nombre"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/correo"
+            style="@style/texto_general"
+            android:text="Correo electrónico" />
+
+        <EditText
+            android:id="@+id/ingresarCorreo"
+            style="@style/ingreso_inicio_registro"
+            android:ems="10"
+            android:hint="Ingresa tu correo"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/numeroCelular"
+            style="@style/texto_general"
+            android:text="Número de celular" />
+
+        <EditText
+            android:id="@+id/ingresarNumeroCelular"
+            style="@style/ingreso_inicio_registro"
+            android:ems="10"
+            android:hint="Ingresa tu celular"
+            android:inputType="number"
+            android:maxLength="10" />
+
+        <TextView
+            android:id="@+id/contrasenia"
+            style="@style/texto_general"
+            android:text="Contraseña" />
+
+        <EditText
+            android:id="@+id/ingresarContrasenia"
+            style="@style/ingreso_inicio_registro"
+            android:ems="10"
+            android:hint="Ingresa tu contraseña"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/confirmarContrasenia"
+            style="@style/texto_general"
+            android:text="Confirmar contraseña" />
+
+        <EditText
+            android:id="@+id/ingresarConfirmarContrasenia"
+            style="@style/ingreso_inicio_registro"
+            android:ems="10"
+            android:hint="Vuelve a ingresar tu contraseña"
+            android:inputType="textPassword" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/botonRegistrarse"
+        style="@style/boton_principal"
+        android:text="Registrarte"
+        android:fontFamily="@font/abril_fatface"
+        android:layout_width="250dp"
+        android:textColor="@color/secundario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84" />
+    <Button
+        android:id="@+id/botonIniciarSesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Inicia Sesión"
+        android:textColor="@color/secundario"
+        android:textSize="@dimen/texto_inicio_registro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noCuenta"
+        app:layout_constraintVertical_bias="0.50" />
+    <TextView
+        android:id="@+id/noCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/abril_fatface"
+        android:text="¿Ya tienes una cuenta?"
+        android:textColor="@color/secundario"
+        android:textSize="@dimen/texto_inicio_registro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonRegistrarse"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lineaGuia1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lineaGuia2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

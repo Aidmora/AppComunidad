@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="texto_inicio_registro">18sp</dimen>
+    <dimen name="AppComunidad">25sp</dimen>
+    <dimen name="entrada_datos">16sp</dimen>
+    <dimen name="margen">20sp</dimen>
+    <dimen name="texto_boton">23sp</dimen>
+    <dimen name="dimesion_boton">250dp</dimen>
+
+</resources>

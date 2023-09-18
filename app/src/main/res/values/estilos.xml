@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="texto_general">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">@dimen/texto_inicio_registro</item>
+        <item name="android:textColor">@color/secundario</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="texto_actualizar_datos">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">@dimen/texto_inicio_registro</item>
+        <item name="android:textColor">@color/secundario</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="ingreso_actualizar_datos">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">@dimen/entrada_datos</item>
+        <item name="android:textColor">@color/ingreso_datos</item>
+        <item name="android:textColorHint">@color/texto_oculto</item>
+    </style>
+
+    <style name="ingreso_inicio_registro">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">@dimen/entrada_datos</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/texto_oculto</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="texto_escaner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="texto_editar_perfil">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:layout_marginVertical">15dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ingreso_escaner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/ingreso_datos</item>
+        <item name="android:textColorHint">@color/texto_oculto</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="boton_principal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/black</item>
+        <item name="android:textColor">@color/secundario</item>
+        <item name="android:textSize">@dimen/texto_boton</item>
+
+    </style>
+
+    <style name="texto_barra_navegacion">
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="fondo_encabezado">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:background">@color/principal</item>
+        <item name="android:gravity">center</item>
+
+    </style>
+
+    <style name="texto_encabezado">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/secundario</item>
+        <item name="android:fontFamily">@font/abril_fatface</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="texto_reservar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginVertical">15dp</item>
+
+    </style>
+
+
+    <style name="texto_lista_reservaciones">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/principal</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="texto_factura">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/secundario</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+
+</resources>

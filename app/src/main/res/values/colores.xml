@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="ingreso_datos">#FFFFFFFF</color>
+    <color name="principal">#323142</color>
+    <color name="variacion_principal">#504E79</color>
+    <color name="secundario">#E2C185</color>
+    <color name="texto_oculto">#6C6C6C</color>
+    <color name="boton">#181824</color>
+    <color name="trasparente">#00000000</color>
+    <color name="barra_navegacion">#181729</color>
+    <color name="pendiente">#E09B25</color>
+    <color name="caducada">#D32F2F</color>
+    <color name="confirmada">#388E3C</color>
+
+</resources>
