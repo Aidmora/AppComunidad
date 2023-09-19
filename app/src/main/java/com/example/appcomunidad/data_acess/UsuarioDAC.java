@@ -3,6 +3,7 @@ package com.example.appcomunidad.data_acess;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -23,13 +24,7 @@ public class UsuarioDAC extends GestorBaseDatos {
      * @return cursorConsulta:Representa la tabla de registros activos, obtenidos a partir del query.
      * @throws AppException
      */
-    @Override
-    public Cursor leerRegistros() throws AppException {
-        consultaSQL = " SELECT IdUsuario, IdRol, Nombre, Correo, Celular, Estado, FechaRegistro, FechaModificacion "
-                    + " FROM " + TABLA_USUARIO
-                    + " WHERE Estado = 1 ";
-        return obtenerConsulta(consultaSQL, null);
-    }
+
 
     /**
      * leerPorId: Se encarga de leer los registros activos en la tabla "Usuario" a partir de un Id de
@@ -38,15 +33,7 @@ public class UsuarioDAC extends GestorBaseDatos {
      * @return cursorConsulta:Representa la tabla de registros activos, obtenidos a partir del query.
      * @throws AppException
      */
-    @Override
-    public Cursor leerPorId(int idRegistro) throws AppException {
-        consultaSQL = " SELECT IdUsuario, IdRol, Nombre, Correo, Celular, Estado, FechaRegistro, FechaModificacion "
-                    + " FROM " + TABLA_USUARIO
-                    + " WHERE Estado = 1 "
-                    + " AND IdUsuario = ? ";
-        String[] valores = new String[]{String.valueOf(idRegistro)};
-        return obtenerConsulta(consultaSQL, valores);
-    }
+
 
     /**
      * insertarRegistro: Se encarga de insertar un nuevo registro en la tabla "Usuario"
@@ -62,7 +49,8 @@ public class UsuarioDAC extends GestorBaseDatos {
         valoresContenido.put("Nombre", nombre);
         valoresContenido.put("Correo", correo);
         valoresContenido.put("Celular", celular);
-        return getWritableDatabase().insert(TABLA_USUARIO, null, valoresContenido);
+        SQLiteDatabase db= getWritableDatabase();
+        return db.insert(TABLA_USUARIO, null, valoresContenido);
     }
 
     /**

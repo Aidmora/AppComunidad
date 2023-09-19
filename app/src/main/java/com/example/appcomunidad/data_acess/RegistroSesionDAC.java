@@ -23,13 +23,7 @@ public class RegistroSesionDAC extends GestorBaseDatos {
      * a partir de la consulta del query.
      * @throws AppException
      */
-    @Override
-    public Cursor leerRegistros() throws AppException {
-        consultaSQL =  " SELECT IdRegistroSesion, IdUsuario, ResultadoIngreso, EstadoSesion, FechaIngreso, FechaCierre "
-                            + " FROM " + TABLA_REGISTRO_USUARIO
-                            + " WHERE ResultadoIngreso = 'OK' ";
-        return obtenerConsulta(consultaSQL, null);
-    }
+
 
     /**
      * leerPorId: Se encarga de leer los registors de la tabla  "Registro Sesion", a partir del Id del
@@ -39,14 +33,7 @@ public class RegistroSesionDAC extends GestorBaseDatos {
      * y un Id de registro sesion especifico.
      * @throws AppException
      */
-    @Override
-    public Cursor leerPorId(int idRegistro) throws AppException {
-        consultaSQL = " SELECT IdRegistroSesion, IdUsuario, ResultadoIngreso, EstadoSesion, FechaIngreso, FechaCierre "
-                    + " FROM " + TABLA_REGISTRO_USUARIO
-                    + " WHERE IdRegistroSesion = ? ";
-        String[] valores = new String[]{String.valueOf(idRegistro)};
-        return obtenerConsulta(consultaSQL, valores);
-    }
+
 
     /**
      * leerIdUsuarioConectado: Se encarga de leer el usuario que se encuentra con un registro en "OK"

@@ -25,67 +25,7 @@ public class UsuarioBL extends GestorBL{
         usuario = new Usuario();
     }
 
-    /**
-     * obtenerRegistrosActivos:Se encarga de llamar a la lectura de registros en la DAC, para poder obtener los registros Activos.
-     * De esta manera, obtiene la informacion y la envia a la entidad Usuario.
-     * @return listaUsuario: Representa el conjunto de usuarios activos.
-     * @throws AppException
-     */
-    public List<Usuario> obtenerRegistrosActivos() throws AppException {
-        List<Usuario> listaUsuarios = new ArrayList<>();
-        cursorConsulta = usuarioDAC.leerRegistros();
 
-        if (cursorConsulta.moveToFirst()) {
-            do {
-                usuario = new Usuario();
-                usuario.setId(cursorConsulta.getInt(0));
-                usuario.setIdRol(cursorConsulta.getInt(1));
-                usuario.setNombre(cursorConsulta.getString(2));
-                usuario.setCorreo(cursorConsulta.getString(3));
-                usuario.setCelular(cursorConsulta.getString(4));
-                usuario.setEstado(cursorConsulta.getInt(5));
-                try {
-                    usuario.setFechaRegistro(formatoFechaHora.parse(cursorConsulta.getString(6)));
-                    usuario.setFechaModificacion(formatoFechaHora.parse(cursorConsulta.getString(7)));
-                } catch (ParseException error) {
-                    throw new AppException(error, getClass(), "obtenerRegistrosActivos()");
-                }
-                listaUsuarios.add(usuario);
-            } while (cursorConsulta.moveToNext());
-        }
-
-        cursorConsulta.close();
-        return listaUsuarios;
-    }
-
-    /**
-     * obtenerPorId: Se encarga de llamar a la lectura de registros en la DAC, para poder obtener los registros Activos de un usuario en especifico.
-     * De esta manera, obtiene la informacion y la envia a la entidad Usuario.
-     * @param idUsuario: Representa al Id del usuario.
-     * @return usuario
-     * @throws AppException
-     */
-    public Usuario obtenerPorId(int idUsuario) throws AppException {
-        cursorConsulta = usuarioDAC.leerPorId(idUsuario);
-
-        if (cursorConsulta.moveToFirst()) {
-            usuario = new Usuario();
-            usuario.setId(cursorConsulta.getInt(0));
-            usuario.setIdRol(cursorConsulta.getInt(1));
-            usuario.setNombre(cursorConsulta.getString(2));
-            usuario.setCorreo(cursorConsulta.getString(3));
-            usuario.setCelular(cursorConsulta.getString(4));
-            usuario.setEstado(cursorConsulta.getInt(5));
-            try {
-                usuario.setFechaRegistro(formatoFechaHora.parse(cursorConsulta.getString(6)));
-                usuario.setFechaModificacion(formatoFechaHora.parse(cursorConsulta.getString(7)));
-            } catch (ParseException error) {
-                throw new AppException(error, getClass(), "obtenerPorId()");
-            }
-        }
-
-        return usuario;
-    }
 
     /**
      * ingresarRegistro: Se encarga de insertar un usuario en la base de datos.

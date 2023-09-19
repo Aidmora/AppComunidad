@@ -17,18 +17,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        GestorBaseDatos gestorBD = new GestorBaseDatos(this) {
-            @Override
-            public Cursor leerRegistros() throws AppException {
-                return null;
-            }
-
-            @Override
-            public Cursor leerPorId(int idRegistro) throws AppException {
-                return null;
-            }
-        };
-        gestorBD.abrirBaseDatos();
         TimerTask mostrarSplash = new TimerTask() {
             @Override
             public void run() {
