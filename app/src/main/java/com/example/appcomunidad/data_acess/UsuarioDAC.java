@@ -31,6 +31,11 @@ public class UsuarioDAC extends GestorBaseDatos {
         return cursorConsulta ;
     }
 
+    @Override
+    public Cursor leerPorId(int idRegistro) throws AppException {
+        return null;
+    }
+
     /**
      * leerRegistros: Se encarga de leer los registros activos en la tabla "Usuario"
      * @return cursorConsulta:Representa la tabla de registros activos, obtenidos a partir del query.

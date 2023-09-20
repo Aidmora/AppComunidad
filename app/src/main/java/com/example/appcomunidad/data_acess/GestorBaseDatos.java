@@ -48,41 +48,52 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO_ROL + " (" +
-                "IdRol INTEGER PRIMARY KEY NOT NULL," +
-                "Nombre TEXT CHECK(length(Nombre) <= 100) NOT NULL," +
-                "Estado TEXT DEFAULT '1'," +
-                "FechaRegistro DATETIME DEFAULT (datetime('now'))," +
-                "FechaModificacion DATETIME DEFAULT (datetime('now'))" +
+                "IdRol                  INTEGER PRIMARY KEY NOT NULL," +
+                "Nombre                 TEXT CHECK(length(Nombre) <= 100) NOT NULL," +
+                "Estado                 TEXT DEFAULT '1'," +
+                "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
+                "FechaModificacion      DATETIME DEFAULT (datetime('now'))" +
                 ");");
 
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO + " (" +
-                "IdUsuario INTEGER PRIMARY KEY NOT NULL," +
-                "IdRol INTEGER NOT NULL," +
-                "Nombre TEXT CHECK(length(Nombre) <= 100) NOT NULL," +
-                "Correo TEXT CHECK(length(Correo) <= 200) NOT NULL," +
-                "Celular TEXT CHECK(length(Celular) <= 100) NOT NULL," +
-                "Estado TEXT DEFAULT '1'," +
-                "FechaRegistro DATETIME DEFAULT (datetime('now'))," +
-                "FechaModificacion DATETIME DEFAULT (datetime('now'))," +
+                "IdUsuario              INTEGER PRIMARY KEY NOT NULL," +
+                "IdRol                  INTEGER NOT NULL," +
+                "Nombre                 TEXT CHECK(length(Nombre) <= 100) NOT NULL," +
+                "Correo                 TEXT CHECK(length(Correo) <= 200) NOT NULL," +
+                "Celular                TEXT CHECK(length(Celular) <= 100) NOT NULL," +
+                "Estado                 TEXT DEFAULT '1'," +
+                "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
+                "FechaModificacion      DATETIME DEFAULT (datetime('now'))," +
                 "CONSTRAINT FK_IdRol FOREIGN KEY(IdRol) REFERENCES " + TABLA_USUARIO_ROL + "(IdRol)" +
                 ");");
 
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO_CREDENCIAL + " (" +
+                "IdUsuario              INTEGER NOT NULL," +
+                "Contrasena             TEXT CHECK(length(Contrasena) <= 300) NOT NULL,"+
+                "Estado                 TEXT DEFAULT '1'," +
+                "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
+                "FechaModificacion      DATETIME DEFAULT (datetime('now'))," +
+                "CONSTRAINT FK_IdUsuario FOREIGN KEY(IdUsuario) REFERENCES " + TABLA_USUARIO + "(IdUsuario)" +
+                ");");
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_CREDENCIAL + " ( IdUsuario, Contrasena) " +
+                "VALUES ( 1,'119ce1ac2e100ee9ce9d3b3b7f0debcf');");
+
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_REGISTRO_USUARIO + " (" +
-                "IdRegistroUsuario INTEGER PRIMARY KEY NOT NULL," +
-                "IdUsuario INTEGER NOT NULL," +
-                "ResultadoInicioSesion TEXT," +
-                "EstadoSesion TEXT," +
-                "FechaIngreso DATETIME DEFAULT (datetime('now'))," +
-                "FechaCierre DATETIME DEFAULT (datetime('now'))," +
+                "IdRegistroUsuario      INTEGER PRIMARY KEY NOT NULL," +
+                "IdUsuario              INTEGER NOT NULL," +
+                "ResultadoInicioSesion  TEXT," +
+                "EstadoSesion           TEXT," +
+                "FechaIngreso           DATETIME DEFAULT (datetime('now'))," +
+                "FechaCierre            DATETIME DEFAULT (datetime('now'))," +
                 "CONSTRAINT FK_IdUsuario FOREIGN KEY(IdUsuario) REFERENCES " + TABLA_USUARIO + "(IdUsuario)" +
                 ");");
 
         sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO + " ( IdRol, Nombre, Correo, Celular, Estado) " +
-                "VALUES ( 1, 'Ariel Mora', 'arielabc389@gmail.com', '0992107227', '1');");
+                "VALUES ( 1, 'Ariel Mora', 'arielabc389@gmail.com', '0995468359', '1');");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_ROL + " (IdRol, Nombre) " +
                 "VALUES (1, 'Admin');");
         sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_ROL + " (IdRol, Nombre) " +
-                "VALUES (2, 'Dicípulos');");
+                "VALUES (2, 'Javer');");
     }
 
     /**
@@ -116,5 +127,6 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
         }
     }
     public abstract Cursor leerRegistros() throws AppException;
+    public abstract Cursor leerPorId(int idRegistro) throws AppException;
 
 }

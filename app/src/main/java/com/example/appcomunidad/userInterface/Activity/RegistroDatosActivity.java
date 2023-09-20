@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.appcomunidad.BusinessLogic.entities.Usuario;
 import com.example.appcomunidad.BusinessLogic.managers.UsuarioBL;
+import com.example.appcomunidad.BusinessLogic.managers.UsuarioCredencialBL;
 import com.example.appcomunidad.BusinessLogic.utilities.ValidarDatos;
 import com.example.appcomunidad.BusinessLogic.utilities.VerificarDatos;
 import com.example.appcomunidad.R;
@@ -37,8 +38,6 @@ public class RegistroDatosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         inicializarRecursos();
-        botonIniciarSesion.setOnClickListener(this::irIniciarSesion);
-        botonRegistrarse.setOnClickListener(this::irPrincipal);
     }
     private void inicializarRecursos() {
         botonIniciarSesion      = findViewById(R.id.botonIniciarSesion);
@@ -50,10 +49,13 @@ public class RegistroDatosActivity extends AppCompatActivity {
         confirmarContrasenia    = findViewById(R.id.ingresarConfirmarContrasenia);
         verificarDatos          = new VerificarDatos(this);
     }
-    private void irIniciarSesion(View vista) {
-        onBackPressed();
+    public void irIniciarSesion(View view) {
+        Log.i("Ir iniciar sesion","Si entra a este boton");
+        Intent intent= new Intent(this, IniciarSesionActivity.class);
+        startActivity(intent);
     }
-    private void irPrincipal(View view) {
+    public void irPrincipal(View view) {
+        Log.i("Ir iniciar sesion","Si entra a este boton de registro ");
         if (!ValidarDatos.campoLleno(this, ingresarNombre) ||
                 !ValidarDatos.campoLleno(this, ingresarCorreo) ||
                 !ValidarDatos.campoLleno(this, ingresarCelular) ||
@@ -69,6 +71,7 @@ public class RegistroDatosActivity extends AppCompatActivity {
             return;
         Intent intent = new Intent(this, IniciarSesionActivity.class);
         UsuarioBL usuarioBL = new UsuarioBL(this);
+        UsuarioCredencialBL usuarioCredencialBL = new UsuarioCredencialBL(this);
         try {
             numMaximoRegistros= usuarioBL.obtenerMaximoRegistroUsuario();
         } catch (AppException e) {
@@ -80,14 +83,18 @@ public class RegistroDatosActivity extends AppCompatActivity {
                 Log.i("irInicarSesion- RegistroSesionActivity " , "La lista de usuario no esta vacia");
                 for (Usuario usuario  : lstUsuariosActivos) {
                     if((!ingresarNombre.getText().toString().equals(usuario.getNombre()))&&(!ingresarCorreo.getText().toString().equals(usuario.getCorreo()))&&(!ingresarCelular.getText().toString().equals(usuario.getCelular()))){
-                        long idUsuario = usuarioBL.ingresarRegistro(1, ingresarNombre.getText().toString(),
+                        long idUsuario = usuarioBL.ingresarRegistro(2, ingresarNombre.getText().toString(),
                                 ingresarCorreo.getText().toString(),
                                 ingresarCelular.getText().toString());
                         if (idUsuario > 0) {
+                            try {
+                                usuarioCredencialBL.insertarCredencial((int)idUsuario, verificarDatos.encriptarContrasenia(ingresarContrasenia.getText().toString()));
+                            } catch (AppException error) {
+                                throw new RuntimeException(error);
+                            }
                             Toast.makeText(this, "Cuenta creada", Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(intent);
-
                         } else {
                             Toast.makeText(this, "Usuario ya registrado", Toast.LENGTH_SHORT).show();
                         }

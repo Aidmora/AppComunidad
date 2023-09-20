@@ -74,7 +74,9 @@ public class UsuarioBL extends GestorBL{
         cursorConsulta = usuarioDAC.leerTodosRegistros();
 
         if (cursorConsulta.moveToFirst()) {
+            Log.i("obtenerRegistroActivos- USUARIOBL", "INGRESO AL IF");
             do {
+                Log.i("obtenerRegistroActivos- USUARIOBL", "INGRESO AL BUCLE");
                 usuario = new Usuario();
                 usuario.setId(cursorConsulta.getInt(0));
                 usuario.setIdRol(cursorConsulta.getInt(1));
@@ -91,7 +93,7 @@ public class UsuarioBL extends GestorBL{
                 listaUsuarios.add(usuario);
             } while (cursorConsulta.moveToNext());
         }
-
+        Log.i("obtenerRegistroActivos- USUARIOBL", "SALIO DEL BUCLE");
         cursorConsulta.close();
         return listaUsuarios;
     }
