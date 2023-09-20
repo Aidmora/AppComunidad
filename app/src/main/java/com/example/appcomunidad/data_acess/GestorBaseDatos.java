@@ -50,8 +50,6 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO_ROL + " (" +
                 "IdRol INTEGER PRIMARY KEY NOT NULL," +
                 "Nombre TEXT CHECK(length(Nombre) <= 100) NOT NULL," +
-                "Correo TEXT CHECK(length(Correo) <= 200) NOT NULL," +
-                "Celular TEXT CHECK(length(Celular) <= 100) NOT NULL," +
                 "Estado TEXT DEFAULT '1'," +
                 "FechaRegistro DATETIME DEFAULT (datetime('now'))," +
                 "FechaModificacion DATETIME DEFAULT (datetime('now'))" +
@@ -79,6 +77,12 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
                 "CONSTRAINT FK_IdUsuario FOREIGN KEY(IdUsuario) REFERENCES " + TABLA_USUARIO + "(IdUsuario)" +
                 ");");
 
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO + " ( IdRol, Nombre, Correo, Celular, Estado) " +
+                "VALUES ( 1, 'Ariel Mora', 'arielabc389@gmail.com', '0992107227', '1');");
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_ROL + " (IdRol, Nombre) " +
+                "VALUES (1, 'Admin');");
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_ROL + " (IdRol, Nombre) " +
+                "VALUES (2, 'Dicípulos');");
     }
 
     /**
@@ -111,6 +115,6 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
             throw new AppException(error, getClass(), "obtenerConsulta()");
         }
     }
-
+    public abstract Cursor leerRegistros() throws AppException;
 
 }

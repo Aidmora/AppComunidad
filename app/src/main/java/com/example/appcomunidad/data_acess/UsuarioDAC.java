@@ -19,6 +19,18 @@ public class UsuarioDAC extends GestorBaseDatos {
         super(contexto);
     }
 
+    @Override
+    public Cursor leerRegistros() throws AppException {
+        consultaSQL = "SELECT  COUNT(*) maxIdUsuario "
+                        +" FROM "+ TABLA_USUARIO
+                        +" WHERE ESTADO = '1' ";
+        cursorConsulta = obtenerConsulta(consultaSQL,null);
+        if (cursorConsulta != null) {
+            Log.i("leerRegistros-USUARIODAC","Si esta devolviendo el maximo"+cursorConsulta+"");
+        }
+        return cursorConsulta ;
+    }
+
     /**
      * leerRegistros: Se encarga de leer los registros activos en la tabla "Usuario"
      * @return cursorConsulta:Representa la tabla de registros activos, obtenidos a partir del query.
@@ -50,6 +62,9 @@ public class UsuarioDAC extends GestorBaseDatos {
         valoresContenido.put("Correo", correo);
         valoresContenido.put("Celular", celular);
         SQLiteDatabase db= getWritableDatabase();
+        if(db!=null){
+            Log.i("insertarRegistro - USUARIO DAC","La base de datos se creo con exito");
+        }
         return db.insert(TABLA_USUARIO, null, valoresContenido);
     }
 
@@ -68,5 +83,11 @@ public class UsuarioDAC extends GestorBaseDatos {
         valoresContenido.put("Correo", correo);
         valoresContenido.put("Celular", celular);
         return getWritableDatabase().update(TABLA_USUARIO,valoresContenido,"IdRol= ?",valores);
+    }
+    public Cursor leerTodosRegistros() throws AppException {
+        consultaSQL = " SELECT IdUsuario, IdRol, Nombre, Correo, Celular, Estado, FechaRegistro, FechaModificacion "
+                + " FROM " + TABLA_USUARIO
+                + " WHERE Estado = '1' ";
+        return obtenerConsulta(consultaSQL, null);
     }
 }

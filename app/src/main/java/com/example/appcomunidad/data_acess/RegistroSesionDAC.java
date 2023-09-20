@@ -17,6 +17,12 @@ public class RegistroSesionDAC extends GestorBaseDatos {
         super(contexto);
     }
 
+    @Override
+    public Cursor leerRegistros() throws AppException {
+            consultaSQL="";
+        return null;
+    }
+
     /**
      * leerRegistros: Se encarga de leer los registros de la Tabla, "Registro Sesion".
      * @return cursorConsulta: Es la tabla de registros con un resultado de ingreso exitoso, obtenida
