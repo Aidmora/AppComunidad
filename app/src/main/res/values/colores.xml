@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="ingreso_datos">#FFFFFFFF</color>
+    <color name="ingreso_datos">#FF000000</color>
     <color name="principal">#323142</color>
     <color name="variacion_principal">#504E79</color>
     <color name="secundario">#E2C185</color>
