@@ -42,7 +42,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
     }
     public void Siguiente(View view){
         Log.i("irPrincipal","ENTRO AL METODO DEL BOTON");
-        Intent siguiente = new Intent(this, OpcionesNavegarActivity.class);
+        Intent siguiente = new Intent(this, BarraNavegacionActivity.class);
         Log.i("irPrincipal","esta entrando a validar datos");
         if (!ValidarDatos.campoLleno(this, ingresarCorreo) ||
                 !ValidarDatos.campoLleno(this, ingresarContrasena))
