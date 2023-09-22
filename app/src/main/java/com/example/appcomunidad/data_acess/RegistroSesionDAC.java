@@ -56,7 +56,7 @@ public class RegistroSesionDAC extends GestorBaseDatos {
     public Cursor leerIdUsuarioConectado() throws AppException {
         consultaSQL =  " SELECT IdUsuario "
                     + " FROM " + TABLA_REGISTRO_USUARIO
-                    + " WHERE ResultadoIngreso = 'OK' "
+                    + " WHERE ResultadoInicioSesion = 'OK' "
                     + " AND   EstadoSesion = 1 ";
         return obtenerConsulta(consultaSQL, null);
     }
@@ -68,9 +68,9 @@ public class RegistroSesionDAC extends GestorBaseDatos {
      * @throws AppException
      */
     public Cursor leerRegistroConectado() throws AppException {
-        consultaSQL =  " SELECT IdRegistroSesion, IdUsuario, ResultadoIngreso, EstadoSesion, FechaIngreso, FechaCierre "
+        consultaSQL =  " SELECT IdRegistroSesion, IdUsuario, ResultadoInicioSesion, EstadoSesion, FechaIngreso, FechaCierre "
                     + " FROM " + TABLA_REGISTRO_USUARIO
-                    + " WHERE ResultadoIngreso = 'OK' "
+                    + " WHERE ResultadoInicioSesion = 'OK' "
                     + " AND   EstadoSesion = 1 ";
         return obtenerConsulta(consultaSQL, null);
     }
@@ -86,7 +86,7 @@ public class RegistroSesionDAC extends GestorBaseDatos {
     public long insertarRegistro(int idUsuario, String resultadoIngreso, int estadoSesion) {
         valoresContenido = new ContentValues();
         valoresContenido.put("IdUsuario", idUsuario);
-        valoresContenido.put("ResultadoIngreso", resultadoIngreso);
+        valoresContenido.put("ResultadoInicioSesion", resultadoIngreso);
         valoresContenido.put("EstadoSesion", estadoSesion);
         return getWritableDatabase().insert(TABLA_REGISTRO_USUARIO, null, valoresContenido);
     }

@@ -97,4 +97,26 @@ public class UsuarioBL extends GestorBL{
         cursorConsulta.close();
         return listaUsuarios;
     }
+    public Usuario obtenerPorId(int idUsuario) throws AppException {
+        cursorConsulta = usuarioDAC.leerPorId(idUsuario);
+
+        if (cursorConsulta.moveToFirst()) {
+            Log.i("verificarCuentaUsuario","si tiene una consulta en obtener pod ID ");
+            usuario = new Usuario();
+            usuario.setId(cursorConsulta.getInt(0));
+            usuario.setIdRol(cursorConsulta.getInt(1));
+            usuario.setNombre(cursorConsulta.getString(2));
+            usuario.setCorreo(cursorConsulta.getString(3));
+            usuario.setCelular(cursorConsulta.getString(4));
+            usuario.setEstado(cursorConsulta.getInt(5));
+            try {
+                usuario.setFechaRegistro(formatoFechaHora.parse(cursorConsulta. getString(6)));
+                usuario.setFechaModificacion(formatoFechaHora.parse(cursorConsulta.getString(7)));
+            } catch (ParseException error) {
+                throw new AppException(error, getClass(), "obtenerPorId()");
+            }
+        }
+        Log.i("verificarCuentaUsuario","salio de obtener el id ");
+        return usuario;
+    }
 }

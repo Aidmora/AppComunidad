@@ -33,7 +33,16 @@ public class UsuarioDAC extends GestorBaseDatos {
 
     @Override
     public Cursor leerPorId(int idRegistro) throws AppException {
-        return null;
+        consultaSQL = " SELECT IdUsuario, IdRol, Nombre, Correo, Celular, Estado, FechaRegistro, FechaModificacion "
+                + " FROM " + TABLA_USUARIO
+                + " WHERE Estado = 1 "
+                + " AND IdUsuario = ? ";
+        String[] valores = new String[]{String.valueOf(idRegistro)};
+        cursorConsulta=obtenerConsulta(consultaSQL, valores);
+        if(cursorConsulta!=null){
+            Log.i("leerPorId","Si tiene una consulta ");
+        }
+        return cursorConsulta;
     }
 
     /**

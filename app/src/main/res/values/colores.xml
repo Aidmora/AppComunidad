@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
     <color name="ingreso_datos">#FF000000</color>
     <color name="principal">#323142</color>
     <color name="variacion_principal">#504E79</color>
@@ -11,6 +12,8 @@
     <color name="barra_navegacion">#181729</color>
     <color name="pendiente">#E09B25</color>
     <color name="vino">#3D0101</color>
+    <color name="vinoClaro">#551212</color>
     <color name="confirmada">#388E3C</color>
+    <color name="decorarTexto">#D8B87F</color>
 
 </resources>
