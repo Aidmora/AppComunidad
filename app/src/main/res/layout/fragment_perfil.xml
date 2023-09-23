@@ -107,7 +107,6 @@
                     android:textSize="16sp"
                     android:fontFamily="@font/inter_bold"
                     android:textColor="@color/vino" />
-
             </LinearLayout>
 
 
@@ -115,7 +114,7 @@
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="8dp"
@@ -141,8 +140,8 @@
                         android:textSize="15dp" />
 
                     <Space
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1" />
 
                     <TextView
@@ -157,6 +156,29 @@
                         android:textSize="15dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+            <Button
+                android:id="@+id/edit_perfil_button"
+                android:layout_width="wrap_content"
+                android:layout_gravity="left"
+                android:text="Editar Perfil"
+                android:backgroundTint="@color/black"
+                android:layout_height="match_parent"></Button>
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="120" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_gravity="left"
+                android:text="Cerrar Sesión"
+                android:backgroundTint="@color/black"
+                android:layout_height="match_parent"></Button>
+        </LinearLayout>
 
         </LinearLayout>
 
