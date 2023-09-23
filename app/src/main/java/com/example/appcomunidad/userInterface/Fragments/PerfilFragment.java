@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.appcomunidad.BusinessLogic.entities.Usuario;
+import com.example.appcomunidad.BusinessLogic.entities.UsuarioRol;
 import com.example.appcomunidad.BusinessLogic.managers.RegistroSesionBL;
 import com.example.appcomunidad.BusinessLogic.managers.UsuarioBL;
+import com.example.appcomunidad.BusinessLogic.managers.UsuarioRolBL;
 import com.example.appcomunidad.R;
 import com.example.appcomunidad.framework.AppException;
 
@@ -34,16 +37,23 @@ public class PerfilFragment extends Fragment {
 
     private TextView
             nomUsuario,
+            nomUsuario2,
             correoUs,
+
+            rolUs,
             celularUs;
     private UsuarioBL usuarioBL;
+    private UsuarioRol usuarioRol;
     private RegistroSesionBL registroSesionBL;
     private Usuario usuario;
+    private UsuarioRolBL usuarioRolBL;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private int idRolUsuario;
+    private String rolUsuario;
+    private Context contexto;
     public PerfilFragment() {
         // Required empty public constructor
     }
@@ -72,6 +82,7 @@ public class PerfilFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -80,9 +91,10 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View tools=inflater.inflate(R.layout.fragment_perfil, container, false);
-        nomUsuario=tools.findViewById(R.id.nombre_usuario);
+        nomUsuario2=tools.findViewById(R.id.nombre_usuario2);
         correoUs=tools.findViewById(R.id.correo_usuario);
         celularUs=tools.findViewById(R.id.celular_usuario);
+        rolUs=tools.findViewById(R.id.rol_usuario);
         try {
             establecerDatosPerfil();
         } catch (AppException e) {
@@ -93,12 +105,19 @@ public class PerfilFragment extends Fragment {
     public void establecerDatosPerfil() throws AppException {
         Context context = getActivity();
         usuarioBL = new UsuarioBL(context);
+        usuarioRolBL=new UsuarioRolBL(context);
         registroSesionBL = new RegistroSesionBL(context);
+
 
         int idUsuarioActivo= registroSesionBL.obtenerIdUsuarioConectado();
         usuario = usuarioBL.obtenerPorId(idUsuarioActivo);
-        nomUsuario.setText(usuario.getNombre());
+        idRolUsuario= usuario.getIdRol();
+        Log.i("establecerDatos","Si esta sacando el id del usuario conectado"+ idUsuarioActivo);
+        usuarioRol=usuarioRolBL.obtenerRolUsuario(idRolUsuario);
+        rolUsuario= usuarioRol.getNombre();
+        nomUsuario2.setText(usuario.getNombre());
         correoUs.setText(usuario.getCorreo());
         celularUs.setText(usuario.getCelular());
+        rolUs.setText(rolUsuario);
     }
 }
