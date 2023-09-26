@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".userInterface.Fragments.PerfilFragment">
+    tools:context=".userInterface.Activity.ActualizarDatosActivity">
     <LinearLayout
         android:id="@+id/encabezado"
         style="@style/fondo_encabezado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="left"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0">
         <TextView
-            android:id="@+id/nombre_usuario2"
+            android:id="@+id/nombre_usuario3"
             style="@style/texto_editar_perfil"
             android:layout_width="wrap_content"
             android:focusable="false"
@@ -27,35 +27,6 @@
             android:fontFamily="@font/inter_bold"
             android:text="Nombre de prueba"
             android:textColor="@color/black" />
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="30" />
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTintMode="screen"
-            android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_search" />
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="30" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/ic_icon_magen" />
-
-
-
 
     </LinearLayout>
 
@@ -100,7 +71,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@+id/rol_usuario"
+                    android:id="@+id/rol_usuarioAc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tu texto aquí"
@@ -125,17 +96,19 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
                     android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/celular_usuario"
+                    <EditText
+                        android:id="@+id/ingreso_nom_Usuario2"
                         style="@style/texto_editar_perfil"
+                        android:ems="10"
+                        android:hint="Ingresa tu nombre"
+                        android:inputType="text"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center"
-                        android:focusable="false"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Celular de Prueba"
                         android:textColor="@color/vino"
                         android:textSize="15dp" />
 
@@ -144,46 +117,51 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
-                    <TextView
-                        android:id="@+id/correo_usuario"
+                    <EditText
+                        android:id="@+id/correo_usuario2"
                         style="@style/texto_editar_perfil"
+                        android:ems="10"
+                        android:hint="Ingresa tu correo"
+                        android:inputType="textEmailAddress"
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
-                        android:focusable="false"
                         android:fontFamily="@font/inter_bold"
-                        android:text="Correo de prueba"
+                        android:textColor="@color/vino"
+                        android:textSize="15dp" />
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                    <EditText
+                        android:id="@+id/celular_usuario2"
+                        style="@style/texto_editar_perfil"
+                        android:ems="10"
+                        android:hint="Ingresa tu celular"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/inter_bold"
                         android:textColor="@color/vino"
                         android:textSize="15dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp">
-            <Button
-                android:id="@+id/edit_perfil_button"
-                android:layout_width="wrap_content"
-                android:layout_gravity="left"
-                android:text="Editar Perfil"
-                android:backgroundTint="@color/black"
-                android:layout_height="match_parent"></Button>
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="120" />
-            <Button
-                android:id="@+id/cerrar_sesion"
-                android:layout_width="wrap_content"
-                android:layout_gravity="left"
-                android:text="Cerrar Sesión"
-                android:backgroundTint="@color/black"
-                android:layout_height="match_parent"></Button>
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                <Button
+                    android:id="@+id/guardar_Datos_button"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Guardar "
+                    android:backgroundTint="@color/black"
+                    android:layout_height="match_parent"></Button>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

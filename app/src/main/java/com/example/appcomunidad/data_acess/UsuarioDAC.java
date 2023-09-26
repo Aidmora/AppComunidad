@@ -91,12 +91,19 @@ public class UsuarioDAC extends GestorBaseDatos {
      * @return long Representa el numero de registros que se han actializado en la tabla.
      */
     public long actualizarRegistro(int IdRol, String nombre, String correo, String celular) {
+        Log.i("establecerDatos","Entro al metodo de actualizar Registro en la DAC de usuario ");
         String[] valores = new String[] {String.valueOf(IdRol)};
         valoresContenido = new ContentValues();
         valoresContenido.put("Nombre", nombre);
         valoresContenido.put("Correo", correo);
         valoresContenido.put("Celular", celular);
-        return getWritableDatabase().update(TABLA_USUARIO,valoresContenido,"IdRol= ?",valores);
+        long registorActualizado= getWritableDatabase().update(TABLA_USUARIO,valoresContenido,"IdRol= ?",valores);
+
+        if(registorActualizado<=0){
+            Log.i("establecerDatos","no esta actualizando registro ");
+        }
+        Log.i("establecerDatos","ha actualizado el registro. ");
+        return registorActualizado;
     }
     public Cursor leerTodosRegistros() throws AppException {
         consultaSQL = " SELECT IdUsuario, IdRol, Nombre, Correo, Celular, Estado, FechaRegistro, FechaModificacion "

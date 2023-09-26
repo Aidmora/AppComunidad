@@ -41,16 +41,10 @@ public class UsuarioBL extends GestorBL{
     }
 
     /**
-     * actualizarRegistro: Se encarga de actualizar la informacion de un usuario en la base de datos.
-     * @param idRol: Representa el Id del rol
-     * @param nombre: Representa el nombre del usuario
-     * @param correo: Representa el correo del usuario
-     * @param celular: Representa el numero celular del usuario.
-     * @return long: Representa el identificador del registro actualizado.
+     *
+     * @return
+     * @throws AppException
      */
-    public long actualizarRegistro(int idRol, String nombre, String correo, String celular){
-        return usuarioDAC.actualizarRegistro(idRol,  nombre,  correo, celular);
-    }
     @SuppressLint("Range")
     public int obtenerMaximoRegistroUsuario() throws AppException {
         cursorConsulta = usuarioDAC.leerRegistros();
@@ -118,5 +112,18 @@ public class UsuarioBL extends GestorBL{
         }
         Log.i("verificarCuentaUsuario","salio de obtener el id ");
         return usuario;
+    }
+
+    /**
+     *
+     * @param idRol
+     * @param nombre
+     * @param correo
+     * @param celular
+     * @return
+     */
+    public long actualizarRegistro(int idRol, String nombre, String correo, String celular){
+        Log.i("establecerDatos","Entro al metodo de actualizar Registro en la BL de Usuario");
+        return usuarioDAC.actualizarRegistro(idRol,  nombre,  correo, celular);
     }
 }

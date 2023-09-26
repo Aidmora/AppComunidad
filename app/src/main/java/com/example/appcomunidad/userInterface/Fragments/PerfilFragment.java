@@ -1,6 +1,7 @@
 package com.example.appcomunidad.userInterface.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,8 @@ import com.example.appcomunidad.BusinessLogic.managers.UsuarioBL;
 import com.example.appcomunidad.BusinessLogic.managers.UsuarioRolBL;
 import com.example.appcomunidad.R;
 import com.example.appcomunidad.framework.AppException;
+import com.example.appcomunidad.userInterface.Activity.ActualizarDatosActivity;
+import com.example.appcomunidad.userInterface.Activity.IniciarSesionActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,11 +98,22 @@ public class PerfilFragment extends Fragment {
         correoUs=tools.findViewById(R.id.correo_usuario);
         celularUs=tools.findViewById(R.id.celular_usuario);
         rolUs=tools.findViewById(R.id.rol_usuario);
+        editPerfil = tools.findViewById(R.id.edit_perfil_button);
+        cerrarSesion=tools.findViewById(R.id.cerrar_sesion);
         try {
             establecerDatosPerfil();
         } catch (AppException e) {
             throw new RuntimeException(e);
         }
+        editPerfil.setOnClickListener(this::irEditarPerfil);
+        cerrarSesion.setOnClickListener(vista -> {
+            try {
+                cerrarSesion(vista);
+            } catch (AppException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         return tools;
     }
     public void establecerDatosPerfil() throws AppException {
@@ -119,5 +133,23 @@ public class PerfilFragment extends Fragment {
         correoUs.setText(usuario.getCorreo());
         celularUs.setText(usuario.getCelular());
         rolUs.setText(rolUsuario);
+    }
+    public void cerrarSesion(View view ) throws AppException {
+        Context contexto = getActivity();
+        Log.i("establecerDatos","Esta entrando a RegistroSesionBL");
+        registroSesionBL = new RegistroSesionBL(contexto);
+        Log.i("establecerDatos","Paso registro Sesion BL ");
+        if(registroSesionBL.desconectarUsuario()){
+            Log.i("establecerDatos","Entro al If ");
+            Intent intent= new Intent(contexto, IniciarSesionActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
+        }
+        Log.i("establecerDatos","salio del If ");
+    }
+    public void irEditarPerfil(View view){
+        Intent intent= new Intent(getContext(), ActualizarDatosActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
     }
 }

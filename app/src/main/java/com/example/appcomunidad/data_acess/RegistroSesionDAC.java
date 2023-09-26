@@ -68,7 +68,7 @@ public class RegistroSesionDAC extends GestorBaseDatos {
      * @throws AppException
      */
     public Cursor leerRegistroConectado() throws AppException {
-        consultaSQL =  " SELECT IdRegistroSesion, IdUsuario, ResultadoInicioSesion, EstadoSesion, FechaIngreso, FechaCierre "
+        consultaSQL =  " SELECT IdRegistroUsuario, IdUsuario, ResultadoInicioSesion, EstadoSesion, FechaIngreso, FechaCierre "
                     + " FROM " + TABLA_REGISTRO_USUARIO
                     + " WHERE ResultadoInicioSesion = 'OK' "
                     + " AND   EstadoSesion = 1 ";
@@ -103,7 +103,7 @@ public class RegistroSesionDAC extends GestorBaseDatos {
         valoresContenido = new ContentValues();
         valoresContenido.put("EstadoSesion",0);
         valoresContenido.put("FechaCierre", fechaCierre);
-        return getWritableDatabase().update(TABLA_REGISTRO_USUARIO, valoresContenido, "IdRegistroSesion = ?", valores);
+        return getWritableDatabase().update(TABLA_REGISTRO_USUARIO, valoresContenido, "IdRegistroUsuario = ?", valores);
     }
 
 }
