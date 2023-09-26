@@ -63,4 +63,7 @@ public class BarraNavegacionActivity extends AppCompatActivity {
         transaccion.replace(R.id.fragmento_contenedor,fragment);
         transaccion.commit();
     }
+    @Override
+    public void onBackPressed() {
+    }
 }

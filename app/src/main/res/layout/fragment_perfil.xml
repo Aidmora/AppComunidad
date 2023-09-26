@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".userInterface.Fragments.PerfilFragment">
+
     <LinearLayout
         android:id="@+id/encabezado"
         style="@style/fondo_encabezado"
@@ -12,11 +13,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Contenido del encabezado -->
+
         <TextView
             android:id="@+id/nombre_usuario2"
             style="@style/texto_editar_perfil"
@@ -27,10 +29,12 @@
             android:fontFamily="@font/inter_bold"
             android:text="Nombre de prueba"
             android:textColor="@color/black" />
+
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="30" />
+
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
@@ -39,36 +43,20 @@
             android:backgroundTintMode="screen"
             android:layout_weight="1"
             android:src="@android:drawable/ic_menu_search" />
+
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="30" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/ic_icon_magen" />
-
-
-
-
     </LinearLayout>
-
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/encabezado"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintBottom_toTopOf="@id/encabezado2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,7 +96,6 @@
                     android:fontFamily="@font/inter_bold"
                     android:textColor="@color/vino" />
             </LinearLayout>
-
 
             <androidx.cardview.widget.CardView
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -156,34 +143,85 @@
                         android:textSize="15dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp">
-            <Button
-                android:id="@+id/edit_perfil_button"
-                android:layout_width="wrap_content"
-                android:layout_gravity="left"
-                android:text="Editar Perfil"
-                android:backgroundTint="@color/black"
-                android:layout_height="match_parent"></Button>
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_weight="120" />
-            <Button
-                android:id="@+id/cerrar_sesion"
-                android:layout_width="wrap_content"
-                android:layout_gravity="left"
-                android:text="Cerrar Sesión"
-                android:backgroundTint="@color/black"
-                android:layout_height="match_parent"></Button>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+                <Button
+                    android:id="@+id/edit_perfil_button"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Editar Perfil"
+                    android:backgroundTint="@color/black"
+                    android:layout_height="match_parent"></Button>
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="120" />
+                <Button
+                    android:id="@+id/cerrar_sesion"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Cerrar Sesión"
+                    android:backgroundTint="@color/black"
+                    android:layout_height="match_parent"></Button>
+            </LinearLayout>
         </LinearLayout>
-
-        </LinearLayout>
-
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/encabezado2"
+        style="@style/fondo_encabezado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/historial_FButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            android:src="@drawable/baseline_manage_history_24"
+            tools:layout_editor_absoluteX="270dp"
+            tools:layout_editor_absoluteY="659dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/info_FButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="right"
+            android:visibility="invisible"
+            android:src="@drawable/ic_icon_info"
+            tools:layout_editor_absoluteX="189dp"
+            tools:layout_editor_absoluteY="659dp"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/magen_FButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_icon_magen" />
+
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

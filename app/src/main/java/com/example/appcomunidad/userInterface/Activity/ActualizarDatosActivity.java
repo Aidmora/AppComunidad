@@ -3,6 +3,7 @@ package com.example.appcomunidad.userInterface.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -86,5 +87,9 @@ public class ActualizarDatosActivity extends AppCompatActivity {
 
         finish();
         onBackPressed();
+    }
+    public void onBackPressed() {
+        Intent intent = new Intent(this, BarraNavegacionActivity.class);
+        startActivity(intent);
     }
 }

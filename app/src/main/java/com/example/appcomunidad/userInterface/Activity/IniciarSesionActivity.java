@@ -61,5 +61,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
         startActivity(siguiente);
         finish();
     }
+    @Override
+    public void onBackPressed() {
+
+    }
 
 }

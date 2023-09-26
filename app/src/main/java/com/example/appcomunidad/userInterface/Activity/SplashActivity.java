@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.appcomunidad.BusinessLogic.entities.RegistroSesion;
+import com.example.appcomunidad.BusinessLogic.managers.RegistroSesionBL;
 import com.example.appcomunidad.R;
 import com.example.appcomunidad.data_acess.GestorBaseDatos;
 import com.example.appcomunidad.framework.AppException;
@@ -13,6 +16,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashActivity extends Activity {
+    private RegistroSesionBL registroSesionBL;
+    private RegistroSesion registroSesion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,13 +25,26 @@ public class SplashActivity extends Activity {
         TimerTask mostrarSplash = new TimerTask() {
             @Override
             public void run() {
-                Intent intent= new Intent(SplashActivity.this, IniciarSesionActivity.class);
-                startActivity(intent);
-                finish();
+                registroSesionBL = new RegistroSesionBL(SplashActivity.this);
+                registroSesion = new RegistroSesion();
+                Intent intent;
+                try {
 
+                    registroSesion = registroSesionBL.obtenerRegistroConectado();
+                    if(registroSesion != null ) {
+                        intent= new Intent( SplashActivity.this, BarraNavegacionActivity.class);
+                        finish();
+                    }else {
+                        intent= new Intent( SplashActivity.this, IniciarSesionActivity.class);
+                        finish();
+                    }
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.i("AppException","catch error");
+                }
+                finish();
             }
         };
-
         Timer tiempo= new Timer();
         tiempo.schedule(mostrarSplash,3000);
     }

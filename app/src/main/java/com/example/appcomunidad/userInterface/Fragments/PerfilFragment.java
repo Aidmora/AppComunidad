@@ -10,9 +10,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.appcomunidad.userInterface.Activity.historialActivity;
+import com.example.appcomunidad.userInterface.Activity.infoAppActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.appcomunidad.BusinessLogic.entities.Usuario;
 import com.example.appcomunidad.BusinessLogic.entities.UsuarioRol;
 import com.example.appcomunidad.BusinessLogic.managers.RegistroSesionBL;
@@ -34,6 +39,12 @@ public class PerfilFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private Animation
+            rotateOpen,
+            rotateClose,
+            fromBottom,
+            toBottom;
+
     private Button
             editPerfil,
             cerrarSesion;
@@ -57,6 +68,8 @@ public class PerfilFragment extends Fragment {
     private int idRolUsuario;
     private String rolUsuario;
     private Context contexto;
+    private FloatingActionButton  infoBoton, historialBoton, MagenBoton;
+    private boolean botonesVisibles = false;
     public PerfilFragment() {
         // Required empty public constructor
     }
@@ -100,12 +113,23 @@ public class PerfilFragment extends Fragment {
         rolUs=tools.findViewById(R.id.rol_usuario);
         editPerfil = tools.findViewById(R.id.edit_perfil_button);
         cerrarSesion=tools.findViewById(R.id.cerrar_sesion);
+        MagenBoton=tools.findViewById(R.id.magen_FButton);
+        infoBoton=tools.findViewById(R.id.info_FButton);
+        historialBoton=tools.findViewById(R.id.historial_FButton);
+        rotateOpen = AnimationUtils.loadAnimation(requireContext(), R.anim.rotacion_abrir_boton);
+        rotateClose= AnimationUtils.loadAnimation(requireContext(),R.anim.rotacion_cerrar_boton);
+        fromBottom=AnimationUtils.loadAnimation(requireContext(),R.anim.from_bottom_anim);
+        toBottom=AnimationUtils.loadAnimation(requireContext(),R.anim.to_bottom_anim);
+
         try {
             establecerDatosPerfil();
         } catch (AppException e) {
             throw new RuntimeException(e);
         }
         editPerfil.setOnClickListener(this::irEditarPerfil);
+        MagenBoton.setOnClickListener(this::mostrarFloatingButtons);
+        infoBoton.setOnClickListener(this::irInfoApp);
+        historialBoton.setOnClickListener(this::irHisotrial);
         cerrarSesion.setOnClickListener(vista -> {
             try {
                 cerrarSesion(vista);
@@ -152,4 +176,44 @@ public class PerfilFragment extends Fragment {
         startActivity(intent);
         requireActivity().finish();
     }
+    public void mostrarFloatingButtons(View view){
+        mostrarOcultarBotones();
+        animacionBontones();
+    }
+    public void mostrarOcultarBotones() {
+        if (botonesVisibles) {
+            infoBoton.hide();
+            historialBoton.hide();
+            botonesVisibles = false;
+        } else {
+            infoBoton.show();
+            historialBoton.show();
+            botonesVisibles = true;
+        }
+    }
+
+    public void animacionBontones(){
+        if(!botonesVisibles){
+            MagenBoton.startAnimation(rotateClose);
+            infoBoton.startAnimation(toBottom);
+            historialBoton.startAnimation(toBottom);
+
+        }else{
+            MagenBoton.startAnimation(rotateOpen);
+            infoBoton.startAnimation(fromBottom);
+            historialBoton.startAnimation(fromBottom);
+
+        }
+    }
+    public void irInfoApp(View view){
+        Intent intent= new Intent(getContext(), infoAppActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
+    }
+    public void irHisotrial(View view){
+        Intent intent= new Intent(getContext(), historialActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
+    }
+
 }
