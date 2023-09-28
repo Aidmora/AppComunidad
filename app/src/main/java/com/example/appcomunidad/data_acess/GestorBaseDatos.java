@@ -38,7 +38,7 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
 
     public GestorBaseDatos(@Nullable Context contexto) {
         super(contexto, BASEDATOS_NOMBRE, null, BASEDATOS_VERSION);
-
+        this.contexto = contexto;
     }
 
     /**
@@ -48,69 +48,33 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO_ROL + " (" +
-                "IdRol                  INTEGER PRIMARY KEY NOT NULL," +
-                "Nombre                 TEXT CHECK(length(Nombre) <= 100) NOT NULL," +
-                "Estado                 TEXT DEFAULT '1'," +
-                "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
-                "FechaModificacion      DATETIME DEFAULT (datetime('now'))" +
-                ");");
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO_COMUNIDAD + " (" +
-                "IdUsuarioCom                  INTEGER PRIMARY KEY NOT NULL," +
-                "NombreJaver               TEXT CHECK(length(NombreJaver) <= 100) NOT NULL," +
-                "ApellidoJaver               TEXT CHECK(length(ApellidoJaver) <= 100) NOT NULL," +
-                "EstadoCivil              TEXT CHECK(length(EstadoCivil) <= 100) NOT NULL," +
-                "CedulaJaver               TEXT CHECK(length(CedulaJaver) <= 60) NOT NULL," +
-                "CelularJaver               TEXT CHECK(length(CelularJaver) <= 60) NOT NULL," +
-                "CorreoJaver               TEXT CHECK(length(CorreoJaver) <= 100) NOT NULL," +
-                "fotoJaver               TEXT CHECK(length(fotoJaver) <= 200) NOT NULL," +
-                "Estado                 TEXT DEFAULT '1'," +
-                "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
-                "FechaModificacion      DATETIME DEFAULT (datetime('now'))" +
-                ");");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_COMUNIDAD+ " ( NombreJaver, ApellidoJaver, EstadoCivil, CedulaJaver, CelularJaver, CorreoJaver,fotoJaver) " +
-                "VALUES ( 'Josef', 'Mora', 'Soltero', '1724681513', '0992107227', 'josef@gmail.com', 'ic_imagen_autor');");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_COMUNIDAD+ " ( NombreJaver, ApellidoJaver, EstadoCivil, CedulaJaver, CelularJaver, CorreoJaver,fotoJaver) " +
-                "VALUES ( 'Steffy', 'Lucio', 'Soltera', '1724567113', '0995467898', 'steffy@gmail.com', 'ic_imagen_autor');");
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO + " (" +
-                "IdUsuario              INTEGER PRIMARY KEY NOT NULL," +
-                "IdRol                  INTEGER NOT NULL," +
-                "Nombre                 TEXT CHECK(length(Nombre) <= 100) NOT NULL," +
-                "Correo                 TEXT CHECK(length(Correo) <= 200) NOT NULL," +
-                "Celular                TEXT CHECK(length(Celular) <= 100) NOT NULL," +
-                "Estado                 TEXT DEFAULT '1'," +
-                "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
-                "FechaModificacion      DATETIME DEFAULT (datetime('now'))," +
-                "CONSTRAINT FK_IdRol FOREIGN KEY(IdRol) REFERENCES " + TABLA_USUARIO_ROL + "(IdRol)" +
-                ");");
+        try {
+            InputStream inputStream = contexto.getAssets().open("schema.sql");
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String line;
+            StringBuilder query = new StringBuilder();
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO_CREDENCIAL + " (" +
-                "IdUsuario              INTEGER NOT NULL," +
-                "Contrasena             TEXT CHECK(length(Contrasena) <= 300) NOT NULL,"+
-                "Estado                 TEXT DEFAULT '1'," +
-                "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
-                "FechaModificacion      DATETIME DEFAULT (datetime('now'))," +
-                "CONSTRAINT FK_IdUsuario FOREIGN KEY(IdUsuario) REFERENCES " + TABLA_USUARIO + "(IdUsuario)" +
-                ");");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_CREDENCIAL + " ( IdUsuario, Contrasena) " +
-                "VALUES ( 1,'119ce1ac2e100ee9ce9d3b3b7f0debcf');");
+            while ((line = bufferedReader.readLine()) != null) {
+                query.append(line).append("\n");
+            }
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_REGISTRO_USUARIO + " (" +
-                "IdRegistroUsuario      INTEGER PRIMARY KEY NOT NULL," +
-                "IdUsuario              INTEGER NOT NULL," +
-                "ResultadoInicioSesion  TEXT," +
-                "EstadoSesion           TEXT," +
-                "FechaIngreso           DATETIME DEFAULT (datetime('now'))," +
-                "FechaCierre            DATETIME DEFAULT (datetime('now'))," +
-                "CONSTRAINT FK_IdUsuario FOREIGN KEY(IdUsuario) REFERENCES " + TABLA_USUARIO + "(IdUsuario)" +
-                ");");
+            Log.d("GestorBaseDatos", "Contenido de schema.sql:\n" + query.toString());
 
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO + " ( IdRol, Nombre, Correo, Celular, Estado) " +
-                "VALUES ( 1, 'Ariel Mora', 'arielabc389@gmail.com', '0995468359', '1');");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_ROL + " (IdRol, Nombre) " +
-                "VALUES (1, 'Admin');");
-        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_ROL + " (IdRol, Nombre) " +
-                "VALUES (2, 'Javer');");
+            String[] queries = query.toString().split(";");
+            for (String sql : queries) {
+                if (!TextUtils.isEmpty(sql.trim())) {
+                    Log.d("GestorBaseDatos", "Ejecutando SQL:\n" + sql);
+                    sqLiteDatabase.execSQL(sql);
+                }
+            }
+
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
+        } catch (IOException e) {
+            Log.e("GestorBaseDatos", "Error al leer y ejecutar el archivo schema.sql", e);
+        }
     }
 
     /**
