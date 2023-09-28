@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.appcomunidad.R;
 import com.example.appcomunidad.userInterface.Fragments.MagenFragment;
 import com.example.appcomunidad.userInterface.Fragments.PerfilFragment;
+import com.example.appcomunidad.userInterface.Fragments.UsuarioComunidadFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -23,6 +24,7 @@ import com.google.android.material.navigation.NavigationBarView;
 public class BarraNavegacionActivity extends AppCompatActivity {
     private static final PerfilFragment perfilf= new PerfilFragment();
     private  static final MagenFragment magenF= new MagenFragment();
+    private static final UsuarioComunidadFragment usuarioComF= new UsuarioComunidadFragment();
     static BottomNavigationView bn;
     FragmentManager gestorFragmento;
     Fragment fragmentoActual;
@@ -53,8 +55,11 @@ public class BarraNavegacionActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem itemSelect) {
             if (itemSelect.getItemId() == R.id.perfil) {
                 cargarFragmento(perfilf);
-            }else if(itemSelect.getItemId()== R.id.magen)
+            }else if(itemSelect.getItemId()== R.id.magen){
                 cargarFragmento(magenF);
+            }else if(itemSelect.getItemId()== R.id.usuarioComunidad){
+                cargarFragmento(usuarioComF);
+            }
             return true;
         }
     };

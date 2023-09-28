@@ -28,6 +28,7 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
     private static final String BASEDATOS_NOMBRE = "MajanehBD.db";
     protected static final String TABLA_USUARIO = "USUARIO";
     protected static final String TABLA_USUARIO_ROL = "USUARIO_ROL";
+    protected static final String TABLA_USUARIO_COMUNIDAD = "USUARIO_COMUNIDAD";
     protected static final String TABLA_USUARIO_CREDENCIAL = "USUARIO_CREDENCIAL";
     protected static final String TABLA_REGISTRO_USUARIO = "REGISTRO_USUARIO";
     protected Context contexto;
@@ -54,7 +55,23 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
                 "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
                 "FechaModificacion      DATETIME DEFAULT (datetime('now'))" +
                 ");");
-
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO_COMUNIDAD + " (" +
+                "IdUsuarioCom                  INTEGER PRIMARY KEY NOT NULL," +
+                "NombreJaver               TEXT CHECK(length(NombreJaver) <= 100) NOT NULL," +
+                "ApellidoJaver               TEXT CHECK(length(ApellidoJaver) <= 100) NOT NULL," +
+                "EstadoCivil              TEXT CHECK(length(EstadoCivil) <= 100) NOT NULL," +
+                "CedulaJaver               TEXT CHECK(length(CedulaJaver) <= 60) NOT NULL," +
+                "CelularJaver               TEXT CHECK(length(CelularJaver) <= 60) NOT NULL," +
+                "CorreoJaver               TEXT CHECK(length(CorreoJaver) <= 100) NOT NULL," +
+                "fotoJaver               TEXT CHECK(length(fotoJaver) <= 200) NOT NULL," +
+                "Estado                 TEXT DEFAULT '1'," +
+                "FechaRegistro          DATETIME DEFAULT (datetime('now'))," +
+                "FechaModificacion      DATETIME DEFAULT (datetime('now'))" +
+                ");");
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_COMUNIDAD+ " ( NombreJaver, ApellidoJaver, EstadoCivil, CedulaJaver, CelularJaver, CorreoJaver,fotoJaver) " +
+                "VALUES ( 'Josef', 'Mora', 'Soltero', '1724681513', '0992107227', 'josef@gmail.com', 'ic_imagen_autor');");
+        sqLiteDatabase.execSQL("INSERT INTO " + TABLA_USUARIO_COMUNIDAD+ " ( NombreJaver, ApellidoJaver, EstadoCivil, CedulaJaver, CelularJaver, CorreoJaver,fotoJaver) " +
+                "VALUES ( 'Steffy', 'Lucio', 'Soltera', '1724567113', '0995467898', 'steffy@gmail.com', 'ic_imagen_autor');");
         sqLiteDatabase.execSQL("CREATE TABLE " + TABLA_USUARIO + " (" +
                 "IdUsuario              INTEGER PRIMARY KEY NOT NULL," +
                 "IdRol                  INTEGER NOT NULL," +

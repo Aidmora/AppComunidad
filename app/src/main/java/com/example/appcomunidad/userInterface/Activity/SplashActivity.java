@@ -42,7 +42,6 @@ public class SplashActivity extends Activity {
                 } catch (Exception e) {
                     Log.i("AppException","catch error");
                 }
-                finish();
             }
         };
         Timer tiempo= new Timer();

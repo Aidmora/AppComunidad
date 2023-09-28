@@ -17,8 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Contenido del encabezado -->
-
         <TextView
             android:id="@+id/nombre_usuario2"
             style="@style/texto_editar_perfil"
@@ -31,7 +29,7 @@
             android:textColor="@color/black" />
 
         <Space
-            android:layout_width="0dp"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_weight="30" />
 
@@ -221,7 +219,6 @@
             android:src="@drawable/ic_icon_magen" />
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
