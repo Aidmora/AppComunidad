@@ -1,8 +1,9 @@
 package com.example.appcomunidad.BusinessLogic.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UsuarioComunidad {
+public class UsuarioComunidad implements Serializable {
     private int idUsuarioComunidad;
     private String nombreJaver;
     private String apellidoJaver;

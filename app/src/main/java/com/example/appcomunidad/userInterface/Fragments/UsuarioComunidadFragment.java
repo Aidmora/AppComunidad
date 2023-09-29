@@ -1,5 +1,6 @@
 package com.example.appcomunidad.userInterface.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,12 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.appcomunidad.BusinessLogic.entities.UsuarioComunidad;
 import com.example.appcomunidad.BusinessLogic.managers.UsuarioComunidadBL;
 import com.example.appcomunidad.BusinessLogic.utilities.AdaptadorUsuarioComunidad;
 import com.example.appcomunidad.R;
 import com.example.appcomunidad.framework.AppException;
+import com.example.appcomunidad.userInterface.Activity.usuarioComunidadPagoDetalle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +28,7 @@ import java.util.List;
  * Use the {@link UsuarioComunidadFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class UsuarioComunidadFragment extends Fragment {
+public class UsuarioComunidadFragment extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,7 +87,15 @@ public class UsuarioComunidadFragment extends Fragment {
         usuarioComunidadRC= vista.findViewById(R.id.recycler_UsuarioCom);
         usuarioComunidadRC.setLayoutManager(new LinearLayoutManager(getContext()));
         AdaptadorUsuarioComunidad adaptadorUsuarioComunidad= new AdaptadorUsuarioComunidad(listaUsuarioComunidad,getContext());
+        adaptadorUsuarioComunidad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         usuarioComunidadRC.setAdapter(adaptadorUsuarioComunidad);
         return vista;
     }
+
+
 }

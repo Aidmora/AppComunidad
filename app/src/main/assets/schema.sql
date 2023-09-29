@@ -31,6 +31,7 @@ INSERT INTO USUARIO_COMUNIDAD (NombreJaver, ApellidoJaver, EstadoCivil, CedulaJa
 VALUES ('Steffy', 'Lucio', 'Soltera', '1724567113', '0995467898', 'steffy@gmail.com', 'ic_imagen_autor');
 
 
+
 CREATE TABLE USUARIO (
     IdUsuario INTEGER PRIMARY KEY NOT NULL,
     IdRol INTEGER NOT NULL,
