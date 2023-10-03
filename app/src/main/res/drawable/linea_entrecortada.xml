@@ -1,0 +1,8 @@
+<!-- drawable_linea_entrecortada.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <stroke
+        android:color="@color/beige"
+        android:dashWidth="4dp"
+        android:dashGap="4dp" />
+</shape>

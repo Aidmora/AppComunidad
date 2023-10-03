@@ -3,15 +3,18 @@ package com.example.appcomunidad.userInterface.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appcomunidad.BusinessLogic.entities.Usuario;
+import com.example.appcomunidad.BusinessLogic.entities.UsuarioRol;
 import com.example.appcomunidad.BusinessLogic.managers.RegistroSesionBL;
 import com.example.appcomunidad.BusinessLogic.managers.UsuarioBL;
 import com.example.appcomunidad.BusinessLogic.managers.UsuarioRolBL;
@@ -24,9 +27,14 @@ public class ActualizarDatosActivity extends AppCompatActivity {
             nombreUsuarioAc,
             correoUsuarioAc,
             celularUsuarioAc;
+    private int idRolUsuario;
+    private TextView rolUsuario;
     private Button guardarInfo;
     private Usuario usuarioActivo;
     private UsuarioBL usuarioBL;
+    private UsuarioRolBL usuarioRolBL;
+    private UsuarioRol usuarioRol;
+    private String rolUsuarioStr;
     private RegistroSesionBL registroSesionBL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +45,11 @@ public class ActualizarDatosActivity extends AppCompatActivity {
         } catch (AppException e) {
             throw new RuntimeException(e);
         }
-
+        try {
+            establecerDatosPerfil();
+        } catch (AppException e) {
+            throw new RuntimeException(e);
+        }
         guardarInfo.setOnClickListener(view -> {
             try {
                 guardarInfo(view);
@@ -55,6 +67,7 @@ public class ActualizarDatosActivity extends AppCompatActivity {
         correoUsuarioAc     = findViewById(R.id.correo_usuario2);
         celularUsuarioAc    = findViewById(R.id.celular_usuario2);
         guardarInfo         = findViewById(R.id.guardar_Datos_button);
+        rolUsuario          = findViewById(R.id.rol_usuarioAc);
 
         nombreUsuarioAc.setText(usuarioActivo.getNombre());
         correoUsuarioAc.setText(usuarioActivo.getCorreo());
@@ -87,6 +100,18 @@ public class ActualizarDatosActivity extends AppCompatActivity {
 
         finish();
         onBackPressed();
+    }
+    public void establecerDatosPerfil() throws AppException {
+        usuarioRolBL=new UsuarioRolBL(this);
+        usuarioBL = new UsuarioBL(this);
+        registroSesionBL = new RegistroSesionBL(this);
+
+        int idUsuarioActivo= registroSesionBL.obtenerIdUsuarioConectado();
+        usuarioActivo = usuarioBL.obtenerPorId(idUsuarioActivo);
+        idRolUsuario= usuarioActivo.getIdRol();
+        usuarioRol=usuarioRolBL.obtenerRolUsuario(idRolUsuario);
+        rolUsuarioStr= usuarioRol.getNombre();
+        rolUsuario.setText(rolUsuarioStr);
     }
     public void onBackPressed() {
         Intent intent = new Intent(this, BarraNavegacionActivity.class);

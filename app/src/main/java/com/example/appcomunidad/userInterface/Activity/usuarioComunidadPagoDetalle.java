@@ -33,6 +33,5 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
         nombreJaverInfo.setText(usuarioComunidad.getNombreJaver());
         apellidoJaverInfo.setText(usuarioComunidad.getApellidoJaver());
 
-
     }
 }

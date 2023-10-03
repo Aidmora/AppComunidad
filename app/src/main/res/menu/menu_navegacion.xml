@@ -4,14 +4,17 @@
     <item
         android:id="@+id/usuarioComunidad"
         android:title="Habitacion"
+        android:tint="@color/secundario"
         android:icon="@drawable/ic_icon_comida"/>
     <item
         android:id="@+id/magen"
         android:title="Magen"
-        android:icon="@drawable/ic_icon_magen"/>
+        android:icon="@drawable/ic_icon_magen"
+        android:tint="@color/secundario"/>
 
     <item
         android:id="@+id/perfil"
         android:title="Perfil"
+        android:tint="@color/secundario"
         android:icon="@drawable/ic_icon_perfil"/>
 </menu>

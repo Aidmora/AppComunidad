@@ -1,14 +1,19 @@
 package com.example.appcomunidad.userInterface.Fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.example.appcomunidad.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +30,13 @@ public class MagenFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Animation
+            rotateOpen,
+            rotateClose,
+            fromBottom,
+            toBottom;
+    private FloatingActionButton  MagenBoton, googleMapsBoton;
+    private boolean botonesVisibles = false;
 
     public MagenFragment() {
         // Required empty public constructor
@@ -57,10 +69,43 @@ public class MagenFragment extends Fragment {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_magen, container, false);
+        View tools=inflater.inflate(R.layout.fragment_magen, container, false);
+        MagenBoton=tools.findViewById(R.id.magen_FButtonVentanPrincipal);
+        googleMapsBoton=tools.findViewById(R.id.googleMaps_FButtonVentanaPrincipal);
+        rotateOpen = AnimationUtils.loadAnimation(requireContext(), R.anim.rotacion_abrir_boton);
+        rotateClose= AnimationUtils.loadAnimation(requireContext(),R.anim.rotacion_cerrar_boton);
+        fromBottom=AnimationUtils.loadAnimation(requireContext(),R.anim.from_bottom_anim);
+        toBottom=AnimationUtils.loadAnimation(requireContext(),R.anim.to_bottom_anim);
+        MagenBoton.setOnClickListener(this::mostrarFloatingButtons);
+        return tools;
+    }
+    public void mostrarFloatingButtons(View view){
+        mostrarOcultarBotones();
+        animacionBontones();
+    }
+    public void mostrarOcultarBotones() {
+        if (botonesVisibles) {
+            googleMapsBoton.hide();
+            botonesVisibles = false;
+        } else {
+            googleMapsBoton.show();
+            botonesVisibles = true;
+        }
+    }
+
+    public void animacionBontones(){
+        if(!botonesVisibles){
+            MagenBoton.startAnimation(rotateClose);
+            googleMapsBoton.startAnimation(toBottom);
+
+        }else{
+            MagenBoton.startAnimation(rotateOpen);
+            googleMapsBoton.startAnimation(fromBottom);
+
+        }
     }
 }

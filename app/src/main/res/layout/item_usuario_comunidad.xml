@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- ImageView para la foto -->
         <androidx.cardview.widget.CardView
             android:layout_width="96dp"
             android:layout_height="96dp"
@@ -76,7 +75,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    app:cardCornerRadius="48dp"
+                    app:cardCornerRadius="100dp"
                     android:clickable="false"
                     app:cardBackgroundColor="@android:color/transparent"
                     android:layout_gravity="center">
@@ -171,7 +170,7 @@
                                 android:layout_gravity="left"
                                 android:textColor="@color/vino"
                                 android:fontFamily="@font/inter_bold"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:maxLines="1"
                                 android:layout_height="wrap_content" />
                             <View
@@ -187,8 +186,8 @@
                                 android:textColor="@color/black"
                                 android:layout_gravity="left"
                                 android:fontFamily="@font/inter_bold"
-                                android:layout_width="match_parent"
-                                android:maxLines="1"
+                                android:layout_width="wrap_content"
+                                android:maxLines="2"
                                 android:layout_height="wrap_content" />
 
                         </LinearLayout>
