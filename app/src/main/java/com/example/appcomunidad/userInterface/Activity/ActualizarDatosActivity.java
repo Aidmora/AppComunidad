@@ -24,17 +24,17 @@ import com.example.appcomunidad.framework.AppException;
 
 public class ActualizarDatosActivity extends AppCompatActivity {
     private EditText
-            nombreUsuarioAc,
-            correoUsuarioAc,
-            celularUsuarioAc;
+            nombreUsuarioAc;
+    private EditText correoUsuarioAc;
+    private EditText celularUsuarioAc;
     private int idRolUsuario;
-    private TextView rolUsuario;
+    private TextView rolUsuario, nombreUsuarioActualizar;
     private Button guardarInfo;
     private Usuario usuarioActivo;
     private UsuarioBL usuarioBL;
     private UsuarioRolBL usuarioRolBL;
     private UsuarioRol usuarioRol;
-    private String rolUsuarioStr;
+    private String rolUsuarioStr, nombreUsuarioAcStr;
     private RegistroSesionBL registroSesionBL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +68,7 @@ public class ActualizarDatosActivity extends AppCompatActivity {
         celularUsuarioAc    = findViewById(R.id.celular_usuario2);
         guardarInfo         = findViewById(R.id.guardar_Datos_button);
         rolUsuario          = findViewById(R.id.rol_usuarioAc);
+        nombreUsuarioActualizar= findViewById(R.id.nombre_usuarioVentanaActualizar);
 
         nombreUsuarioAc.setText(usuarioActivo.getNombre());
         correoUsuarioAc.setText(usuarioActivo.getCorreo());
@@ -108,10 +109,12 @@ public class ActualizarDatosActivity extends AppCompatActivity {
 
         int idUsuarioActivo= registroSesionBL.obtenerIdUsuarioConectado();
         usuarioActivo = usuarioBL.obtenerPorId(idUsuarioActivo);
+        nombreUsuarioAcStr=usuarioActivo.getNombre();
         idRolUsuario= usuarioActivo.getIdRol();
         usuarioRol=usuarioRolBL.obtenerRolUsuario(idRolUsuario);
         rolUsuarioStr= usuarioRol.getNombre();
         rolUsuario.setText(rolUsuarioStr);
+        nombreUsuarioActualizar.setText(nombreUsuarioAcStr);
     }
     public void onBackPressed() {
         Intent intent = new Intent(this, BarraNavegacionActivity.class);
