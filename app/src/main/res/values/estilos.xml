@@ -36,7 +36,7 @@
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textSize">@dimen/entrada_datos</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:textColorHint">@color/texto_oculto</item>
+        <item name="android:textColorHint">@color/beige</item>
         <item name="android:layout_weight">1</item>
     </style>
 

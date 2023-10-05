@@ -113,4 +113,20 @@ public class VerificarDatos {
         contrasenia = encriptarContrasenia(contrasenia);
         return contrasenia.equals(contraseniaEncriptada);
     }
+    public double valorRegistroIngresado(String valorRegistroIngresado){
+        double valor=0;
+        valorRegistroIngresado= valorRegistroIngresado.trim();
+        if (valorRegistroIngresado.contains(",")){
+            valorRegistroIngresado = valorRegistroIngresado.replace(",", ".");
+            try {
+                valor = Double.parseDouble(valorRegistroIngresado);
+                return valor;
+            } catch (NumberFormatException e) {
+                Log.i("VerificarDouble","Esta dando error en el parseo");
+            }
+        }else{
+             valor= Double.parseDouble(valorRegistroIngresado);
+        }
+        return valor;
+    }
 }

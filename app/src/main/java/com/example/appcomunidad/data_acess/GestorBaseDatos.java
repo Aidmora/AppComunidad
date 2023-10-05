@@ -31,6 +31,18 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
     protected static final String TABLA_USUARIO_COMUNIDAD = "USUARIO_COMUNIDAD";
     protected static final String TABLA_USUARIO_CREDENCIAL = "USUARIO_CREDENCIAL";
     protected static final String TABLA_REGISTRO_USUARIO = "REGISTRO_USUARIO";
+    protected static final String TABLA_INGRESOS_ENERO="INGRESOS_ENERO";
+    protected static final String TABLA_INGRESOS_FEBRERO="INGRESOS_FEBRERO";
+    protected static final String TABLA_INGRESOS_MARZO="INGRESOS_MARZO";
+    protected static final String TABLA_INGRESOS_ABRIL="INGRESOS_ABRIL";
+    protected static final String TABLA_INGRESOS_MAYO="INGRESOS_MAYO";
+    protected static final String TABLA_INGRESOS_JUNIO="INGRESOS_JUNIO";
+    protected static final String TABLA_INGRESOS_JULIO="INGRESOS_JULIO";
+    protected static final String TABLA_INGRESOS_AGOSTO="INGRESOS_AGOSTO";
+    protected static final String TABLA_INGRESOS_SEPTIEMBRE="INGRESOS_SEPTIEMBRE";
+    protected static final String TABLA_INGRESOS_OCTUBRE="INGRESOS_OCTUBRE";
+    protected static final String TABLA_INGRESOS_NOVIEMBRE="INGRESOS_NOVIEMBRE";
+    protected static final String TABLA_INGRESOS_DICIEMBRE="INGRESOS_DICIEMBRE";
     protected Context contexto;
     protected ContentValues valoresContenido;
     protected String consultaSQL;
