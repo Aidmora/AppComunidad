@@ -1,6 +1,7 @@
 package com.example.appcomunidad.BusinessLogic.utilities;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +26,52 @@ public class ValidarDatos {
         }
         return true;
     }
+    public static boolean validarValor(Context contexto, EditText ingresar){
+        double valor=0;
+        String valorRegistroIngresado= ingresar.getText().toString().trim();
+        if (valorRegistroIngresado.contains(",")){
+            valorRegistroIngresado = valorRegistroIngresado.replace(",", ".");
+            try {
+                valor = Double.parseDouble(valorRegistroIngresado);
+            } catch (NumberFormatException e) {
+                Log.i("VerificarDouble","Esta dando error en el parseo");
+            }
+        }else{
+            valor= Double.parseDouble(valorRegistroIngresado);
+        }
+        if(valor<0){
+            Toast.makeText(contexto, "Debe ingresar valores mayor o igual a cero", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+    public static boolean validarNumero(Context contexto, EditText ingresar) {
+        Log.i("Verificar","entro al metodo");
+        String valorRegistroIngresado = ingresar.getText().toString().trim();
+
+        // Utiliza un patrón regex para verificar que la cadena solo contiene números y un punto decimal
+        if (valorRegistroIngresado.matches("^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?$")) {
+            Log.i("Verificar","Esta entrando al if");
+            if (valorRegistroIngresado.contains(",")) {
+                valorRegistroIngresado = valorRegistroIngresado.replace(",", ".");
+            }
+
+            try {
+                Log.i("Verificar","ha entrado al parseo");
+                double valor = Double.parseDouble(valorRegistroIngresado);
+                return true; // Es un número válido
+            } catch (NumberFormatException e) {
+                Toast.makeText(contexto, "Debe ingresar un número válido", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(contexto, "Debe ingresar un número válido", Toast.LENGTH_SHORT).show();
+        }
+
+        return false;
+    }
+
+
+
 
     /**
      * Metodo que valida el ingreso de un contrasenia y que se confirme la misma contrasenia

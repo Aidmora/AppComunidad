@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userInterface.Activity.InformacionDetalleUsuarioCActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/beige"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/encabezado2"
+                style="@style/fondo_encabezado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@android:color/transparent"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/cerrarInfoDetalle_FButtonVentanaInfoDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:backgroundTint="@color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/icon_salir_infod"
+                    android:visibility="invisible"
+                    tools:layout_editor_absoluteX="189dp"
+                    tools:layout_editor_absoluteY="659dp" />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/magen_FButtonVentanaInfoDetalle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/white"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_icon_magen" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/margen">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="106dp"
+                    android:layout_height="106dp"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="48dp">
+
+                    <ImageView
+                        android:id="@+id/foto_javerVentanaInfoDetalle"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:contentDescription="Imagen"
+                        android:scaleType="centerCrop" />
+                </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/nombre_javerInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:gravity="center"
+                            android:text="NOMBRE"
+                            android:textColor="@color/vino"
+                            android:textSize="20dp" />
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/apellido_javerInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:gravity="center"
+                            android:text="APELLIDO"
+                            android:textColor="@color/vino"
+                            android:textSize="20dp"
+                            tools:ignore="HardcodedText" />
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/cedula_javerInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/inter_bold"
+                        android:gravity="center"
+                        android:text="Cedula"
+                        android:textColor="@color/vinoClaro"
+                        android:textSize="12dp"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:clickable="false"
+                app:cardCornerRadius="20dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/inter_bold"
+                        android:layout_marginTop="10dp"
+                        android:text="BALANCE"
+                        android:gravity="center"
+                        android:textColor="@color/vino"
+                        android:textSize="10dp"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+                    <NumberPicker
+                        android:id="@+id/listaMeses"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:solidColor="@color/beige"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="70dp"/>
+                    <TextView
+                        android:id="@+id/balanceTotalMes_Usuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/inter_bold"
+                        android:layout_marginTop="5dp"
+                        android:text=" Texto Prueba"
+                        android:gravity="center"
+                        android:textColor="@color/vino"
+                        android:textSize="20dp"
+                        tools:ignore="HardcodedText" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/vino"
+                        android:clickable="false"
+                        app:cardCornerRadius="10dp"
+                        android:layout_gravity="center"
+                        app:cardUseCompatPadding="true">
+                        <Button
+                            android:id="@+id/mostrarInformacionDetallada"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Mostrar Transacciones"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"
+                            android:backgroundTint="@android:color/transparent"
+                            android:layout_height="40dp"></Button>
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    android:clickable="false"
+                    app:cardCornerRadius="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/inter_bold"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="Últimas Transacciones "
+                            android:gravity="center"
+                            android:textColor="@color/vino"
+                            android:textSize="20dp"
+                            tools:ignore="HardcodedText" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center"
+                                android:clickable="false"
+                                app:cardBackgroundColor="@color/vino"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="48dp">
+
+
+                            </androidx.cardview.widget.CardView>
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:id="@+id/textMasserBaitHaMInfoDetalle"
+                                style="@style/texto_general"
+                                android:layout_width="130dp"
+                                android:textColor="@color/vinoClaro"
+                                android:layout_marginBottom="22dp"
+                                android:text="Masser Bait HaM : " />
+                            <NumberPicker
+                                android:id="@+id/NPlistaValorMasser"
+                                android:layout_width="150dp"
+                                android:gravity="center"
+                                android:solidColor="@color/white"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center"
+                                android:clickable="false"
+                                app:cardBackgroundColor="@color/vino"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="48dp">
+
+
+                            </androidx.cardview.widget.CardView>
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:id="@+id/textRoshJodeshInfoDetalle"
+                                style="@style/texto_general"
+                                android:layout_width="130dp"
+                                android:textColor="@color/vinoClaro"
+                                android:layout_marginBottom="22dp"
+                                android:text="RoshJodesh :" />
+                            <NumberPicker
+                                android:id="@+id/NPlistaValorRoshJodesh"
+                                android:gravity="center"
+                                android:layout_width="150dp"
+                                android:solidColor="@color/white"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center"
+                                android:clickable="false"
+                                app:cardBackgroundColor="@color/vino"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="48dp">
+
+
+                            </androidx.cardview.widget.CardView>
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:id="@+id/textTerumahYeladimInfoDetalle"
+                                style="@style/texto_general"
+                                android:textColor="@color/vinoClaro"
+                                android:layout_width="130dp"
+                                android:layout_marginBottom="22dp"
+                                android:text="Terumáh Yeladim :" />
+                            <NumberPicker
+                                android:id="@+id/NPlistaValorTerumahYeladim"
+                                android:layout_width="150dp"
+                                android:gravity="center"
+                                android:solidColor="@color/white"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center"
+                                android:clickable="false"
+                                app:cardBackgroundColor="@color/vino"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="48dp">
+
+
+                            </androidx.cardview.widget.CardView>
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:id="@+id/textTerrenoInfoDetalle"
+                                style="@style/texto_general"
+                                android:layout_width="130dp"
+                                android:textColor="@color/vinoClaro"
+                                android:layout_marginBottom="22dp"
+                                android:text="Terreno :" />
+                            <NumberPicker
+                                android:id="@+id/NPlistaValorTerreno"
+                                android:layout_width="150dp"
+                                android:gravity="center"
+                                android:solidColor="@color/white"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center"
+                                android:clickable="false"
+                                app:cardBackgroundColor="@color/vino"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="48dp">
+
+
+                            </androidx.cardview.widget.CardView>
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:id="@+id/textShuljanInfoDetalle"
+                                style="@style/texto_general"
+                                android:layout_width="130dp"
+                                android:textColor="@color/vinoClaro"
+                                android:layout_marginBottom="22dp"
+                                android:text="Shuljan :" />
+                            <NumberPicker
+                                android:id="@+id/NPlistaValorShuljan"
+                                android:layout_width="150dp"
+                                android:gravity="center"
+                                android:solidColor="@color/white"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center"
+                                android:clickable="false"
+                                app:cardBackgroundColor="@color/vino"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="48dp">
+
+
+                            </androidx.cardview.widget.CardView>
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:id="@+id/textTzedaqahInfoDetalle"
+                                style="@style/texto_general"
+                                android:layout_width="130dp"
+                                android:textColor="@color/vinoClaro"
+                                android:layout_marginBottom="22dp"
+                                android:text="Tzedaqáh :" />
+                            <NumberPicker
+                                android:id="@+id/NPlistaValorTzedaqah"
+                                android:layout_width="150dp"
+                                android:gravity="center"
+                                android:solidColor="@color/white"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center"
+                                android:clickable="false"
+                                app:cardBackgroundColor="@color/vino"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="48dp">
+
+
+                            </androidx.cardview.widget.CardView>
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:id="@+id/textKaparahInfoDetalle"
+                                style="@style/texto_general"
+                                android:layout_width="130dp"
+                                android:textColor="@color/vinoClaro"
+                                android:layout_marginBottom="22dp"
+                                android:text="Kaparáh :" />
+                            <NumberPicker
+                                android:id="@+id/NPlistaValorKaparah"
+                                android:gravity="center"
+                                android:layout_width="150dp"
+                                android:solidColor="@color/white"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_gravity="center"
+                                android:clickable="false"
+                                app:cardBackgroundColor="@color/vino"
+                                android:layout_marginLeft="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="48dp">
+
+
+                            </androidx.cardview.widget.CardView>
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="match_parent" />
+                            <TextView
+                                android:id="@+id/textArriendoInfoDetalle"
+                                style="@style/texto_general"
+                                android:layout_width="130dp"
+                                android:textColor="@color/vinoClaro"
+                                android:layout_marginBottom="22dp"
+                                android:text="Arriendo :" />
+                            <NumberPicker
+                                android:id="@+id/NPlistaValorArriendo"
+                                android:layout_width="150dp"
+                                android:gravity="center"
+                                android:solidColor="@color/white"
+                                android:layout_height="match_parent"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

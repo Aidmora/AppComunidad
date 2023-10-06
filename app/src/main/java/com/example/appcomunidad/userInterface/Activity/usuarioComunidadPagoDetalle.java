@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.appcomunidad.BusinessLogic.entities.IngresosEnero;
 import com.example.appcomunidad.BusinessLogic.entities.UsuarioComunidad;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoEneroBL;
+import com.example.appcomunidad.BusinessLogic.utilities.ValidarDatos;
 import com.example.appcomunidad.BusinessLogic.utilities.VerificarDatos;
 import com.example.appcomunidad.R;
 
@@ -77,6 +79,38 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
         Toast.makeText(this, "Ingresar los decimales con (punto). Colocar (cero) si no hay valor para ingresar. ",Toast.LENGTH_LONG ).show();
     }
     public void irPagoDetalleUsuario(View view){
+        if(!ValidarDatos.campoLleno(this,ingresoMasserBaitHaM)||
+                !ValidarDatos.campoLleno(this,ingresoRoshJodesh)||
+                !ValidarDatos.campoLleno(this,ingresoTerumahYeladim)||
+                !ValidarDatos.campoLleno(this,ingresoTerreno)||
+                !ValidarDatos.campoLleno(this,ingresoShuljan)||
+                !ValidarDatos.campoLleno(this,ingresoTzedaqah)||
+                !ValidarDatos.campoLleno(this,ingresoKaparah)||
+                !ValidarDatos.campoLleno(this,ingresoFechaRegistro)||
+                !ValidarDatos.campoLleno(this,ingresoArriendo))
+            return;
+        if(!ValidarDatos.validarNumero(this,ingresoMasserBaitHaM)||
+                !ValidarDatos.validarNumero(this,ingresoRoshJodesh)||
+                !ValidarDatos.validarNumero(this,ingresoTerumahYeladim)||
+                !ValidarDatos.validarNumero(this,ingresoTerreno)||
+                !ValidarDatos.validarNumero(this,ingresoShuljan)||
+                !ValidarDatos.validarNumero(this,ingresoTzedaqah)||
+                !ValidarDatos.validarNumero(this,ingresoKaparah)||
+                !ValidarDatos.validarNumero(this,ingresoArriendo))
+            return;
+        Log.i("Verificar","Esta entrando a validar valor");
+        if(!ValidarDatos.validarValor(this,ingresoMasserBaitHaM)||
+                !ValidarDatos.validarValor(this,ingresoRoshJodesh)||
+                !ValidarDatos.validarValor(this,ingresoTerumahYeladim)||
+                !ValidarDatos.validarValor(this,ingresoTerreno)||
+                !ValidarDatos.validarValor(this,ingresoShuljan)||
+                !ValidarDatos.validarValor(this,ingresoTzedaqah)||
+                !ValidarDatos.validarValor(this,ingresoKaparah)||
+                !ValidarDatos.validarValor(this,ingresoArriendo))
+            return;
+        Log.i("Verificar","Esta entrando a validar el numero");
+
+
         AlertDialog.Builder alertaConfirmacionDatos= new AlertDialog.Builder(usuarioComunidadPagoDetalle.this);
         alertaConfirmacionDatos.setMessage("Está seguro de guardar la información?");
         alertaConfirmacionDatos.setCancelable(false);
@@ -132,6 +166,9 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                 );
                 Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                 finish();
+                Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
+                intent.putExtra("usuarioCom_seleccionado2",  usuarioComunidad);
+                startActivity(intent);
 
             }
         });

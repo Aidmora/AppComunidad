@@ -10,10 +10,10 @@
         android:id="@+id/encabezado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/abril_fatface"
         android:text="MAKJANÉH HASHEKJEN YAH"
         android:textColor="@color/secundario"
         android:textSize="@dimen/AppComunidad"
+        android:fontFamily="@font/inter_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +32,8 @@
         <TextView
             android:id="@+id/correo"
             style="@style/texto_general"
+            android:textColor="@color/vino"
+            android:fontFamily="@font/inter_bold"
             android:text="Correo electrónico" />
 
         <EditText
@@ -44,6 +46,8 @@
         <TextView
             android:id="@+id/contrasenia"
             style="@style/texto_general"
+            android:textColor="@color/vino"
+            android:fontFamily="@font/inter_bold"
             android:text="Contraseña" />
 
         <EditText

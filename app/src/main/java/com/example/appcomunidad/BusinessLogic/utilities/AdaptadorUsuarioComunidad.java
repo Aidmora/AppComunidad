@@ -61,7 +61,6 @@ public class AdaptadorUsuarioComunidad extends RecyclerView.Adapter<AdaptadorUsu
     public void seleccionarUsuarioComunidad(UsuarioComunidad usuarioComunidad){
         Intent intent= new Intent(CONTEXTO, usuarioComunidadPagoDetalle.class);
         intent.putExtra("usuarioCom_seleccionado",  usuarioComunidad);
-        Toast.makeText(CONTEXTO,"El nombre del usuario es "+ usuarioComunidad.getNombreJaver().toString(), Toast.LENGTH_SHORT).show();
         CONTEXTO.startActivity(intent);
     }
     public void setOnClickListener(View.OnClickListener listener){

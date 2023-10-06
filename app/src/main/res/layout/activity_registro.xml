@@ -10,7 +10,7 @@
         android:id="@+id/encabezado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/abril_fatface"
+        android:fontFamily="@font/inter_bold"
         android:text="MAKJANÉH HASHEKJEN YAH"
         android:textColor="@color/secundario"
         android:textSize="@dimen/AppComunidad"
@@ -33,6 +33,8 @@
         <TextView
             android:id="@+id/nombreCompleto"
             style="@style/texto_general"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@color/vino"
             android:text="Nombre y apellido" />
 
         <EditText
@@ -45,6 +47,8 @@
         <TextView
             android:id="@+id/correo"
             style="@style/texto_general"
+            android:textColor="@color/vino"
+            android:fontFamily="@font/inter_bold"
             android:text="Correo electrónico" />
 
         <EditText
@@ -57,6 +61,8 @@
         <TextView
             android:id="@+id/numeroCelular"
             style="@style/texto_general"
+            android:textColor="@color/vino"
+            android:fontFamily="@font/inter_bold"
             android:text="Número de celular" />
 
         <EditText
@@ -70,6 +76,8 @@
         <TextView
             android:id="@+id/contrasenia"
             style="@style/texto_general"
+            android:textColor="@color/vino"
+            android:fontFamily="@font/inter_bold"
             android:text="Contraseña" />
 
         <EditText
@@ -82,6 +90,8 @@
         <TextView
             android:id="@+id/confirmarContrasenia"
             style="@style/texto_general"
+            android:textColor="@color/vino"
+            android:fontFamily="@font/inter_bold"
             android:text="Confirmar contraseña" />
 
         <EditText

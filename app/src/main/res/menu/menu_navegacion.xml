@@ -3,9 +3,9 @@
 
     <item
         android:id="@+id/usuarioComunidad"
-        android:title="Habitacion"
+        android:title="Usuario Comunidad"
         android:tint="@color/secundario"
-        android:icon="@drawable/ic_icon_comida"/>
+        android:icon="@drawable/ic_icon_comunidad"/>
     <item
         android:id="@+id/magen"
         android:title="Magen"

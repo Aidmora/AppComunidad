@@ -275,6 +275,7 @@
                         <TextView
                             android:id="@+id/textoMasserBaitHaM"
                             style="@style/texto_general"
+                            android:textColor="@color/vino"
                             android:text="Masser Bait HaM" />
 
                         <EditText
@@ -286,6 +287,7 @@
                         <TextView
                             android:id="@+id/textoRoshJodesh"
                             style="@style/texto_general"
+                            android:textColor="@color/vino"
                             android:text="Rosh Jodesh" />
 
                         <EditText
@@ -297,6 +299,7 @@
                         <TextView
                             android:id="@+id/textoTerumahYeladim"
                             style="@style/texto_general"
+                            android:textColor="@color/vino"
                             android:text="Terumáh Yeladim" />
 
                         <EditText
@@ -308,6 +311,7 @@
                         <TextView
                             android:id="@+id/textoTerreno"
                             style="@style/texto_general"
+                            android:textColor="@color/vino"
                             android:text="Terreno" />
 
                         <EditText
@@ -319,6 +323,7 @@
                         <TextView
                             android:id="@+id/textoShuljan"
                             style="@style/texto_general"
+                            android:textColor="@color/vino"
                             android:text="Shuljan" />
 
                         <EditText
@@ -330,6 +335,7 @@
                         <TextView
                             android:id="@+id/textoTzedaqah"
                             style="@style/texto_general"
+                            android:textColor="@color/vino"
                             android:text="Tzedaqáh" />
 
                         <EditText
@@ -341,6 +347,7 @@
                         <TextView
                             android:id="@+id/textoKaparah"
                             style="@style/texto_general"
+                            android:textColor="@color/vino"
                             android:text="Kaparáh" />
 
                         <EditText
@@ -352,6 +359,7 @@
                         <TextView
                             android:id="@+id/textoArriendo"
                             style="@style/texto_general"
+                            android:textColor="@color/vino"
                             android:text="Arriendo" />
 
                         <EditText

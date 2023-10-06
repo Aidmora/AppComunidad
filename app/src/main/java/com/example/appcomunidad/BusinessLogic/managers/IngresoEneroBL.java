@@ -76,28 +76,33 @@ public class IngresoEneroBL extends GestorBL{
         return  ingresosEneroList;
     }
 
-    public IngresosEnero leerRegistroPorId(int idUsuarioCom) throws AppException {
+    public List<IngresosEnero> leerRegistroPorId(int idUsuarioCom) throws AppException {
+        List<IngresosEnero> ingresosEneroListIdUsuario= new ArrayList<>();
         cursorConsulta= ingresosEneroDAC.leerPorId(idUsuarioCom);
         if(cursorConsulta.moveToFirst()){
-            ingresosEnero= new IngresosEnero();
-            ingresosEnero.setIdMes(cursorConsulta.getInt(0));
-            ingresosEnero.setNombreMes(cursorConsulta.getString(1));
-            ingresosEnero.setAnnoMes(cursorConsulta.getString(2));
-            ingresosEnero.setIdUsuarioCom(cursorConsulta.getInt(3));
-            ingresosEnero.setNombreJaver(cursorConsulta.getString(4));
-            ingresosEnero.setApellidoJaver(cursorConsulta.getString(5));
-            ingresosEnero.setCedulaJaver(cursorConsulta.getString(6));
-            ingresosEnero.setSemanaFechaIng(cursorConsulta.getString(7));
-            ingresosEnero.setMasserBaitHaM(cursorConsulta.getString(8));
-            ingresosEnero.setRoshJodesh(cursorConsulta.getString(9));
-            ingresosEnero.setTerumahYeladim(cursorConsulta.getString(10));
-            ingresosEnero.setTerreno(cursorConsulta.getString(11));
-            ingresosEnero.setShuljan(cursorConsulta.getString(12));
-            ingresosEnero.setTzedaqah(cursorConsulta.getString(13));
-            ingresosEnero.setKaparah(cursorConsulta.getString(14));
-            ingresosEnero.setArriendo(cursorConsulta.getString(15));
-            ingresosEnero.setTotalSemana(cursorConsulta.getDouble(16));
+            do{
+                ingresosEnero= new IngresosEnero();
+                ingresosEnero.setIdMes(cursorConsulta.getInt(0));
+                ingresosEnero.setNombreMes(cursorConsulta.getString(1));
+                ingresosEnero.setAnnoMes(cursorConsulta.getString(2));
+                ingresosEnero.setIdUsuarioCom(cursorConsulta.getInt(3));
+                ingresosEnero.setNombreJaver(cursorConsulta.getString(4));
+                ingresosEnero.setApellidoJaver(cursorConsulta.getString(5));
+                ingresosEnero.setCedulaJaver(cursorConsulta.getString(6));
+                ingresosEnero.setSemanaFechaIng(cursorConsulta.getString(7));
+                ingresosEnero.setMasserBaitHaM(cursorConsulta.getString(8));
+                ingresosEnero.setRoshJodesh(cursorConsulta.getString(9));
+                ingresosEnero.setTerumahYeladim(cursorConsulta.getString(10));
+                ingresosEnero.setTerreno(cursorConsulta.getString(11));
+                ingresosEnero.setShuljan(cursorConsulta.getString(12));
+                ingresosEnero.setTzedaqah(cursorConsulta.getString(13));
+                ingresosEnero.setKaparah(cursorConsulta.getString(14));
+                ingresosEnero.setArriendo(cursorConsulta.getString(15));
+                ingresosEnero.setTotalSemana(cursorConsulta.getDouble(16));
+                ingresosEneroListIdUsuario.add(ingresosEnero);
+            }while (cursorConsulta.moveToNext());
         }
-        return  ingresosEnero;
+        cursorConsulta.close();
+        return ingresosEneroListIdUsuario ;
     }
 }
