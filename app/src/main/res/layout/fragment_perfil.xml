@@ -145,6 +145,7 @@
                             android:textSize="15dp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
             </HorizontalScrollView>
 
             <LinearLayout

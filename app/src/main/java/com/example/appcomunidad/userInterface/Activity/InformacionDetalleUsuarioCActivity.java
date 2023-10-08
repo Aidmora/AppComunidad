@@ -24,14 +24,14 @@ import java.util.List;
 
 public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
     private IngresoEneroBL ingresoEneroBL;
-    private String [] valoresAportadosMasser, valoresAportadosRoshJodesh, valoresAportadosTerumahYeladim, valoresAportadosTerreno,valoresAportadosShuljan, valoresAportadosTzedaqah,valoresAportadosKaparah,valoresAportadosArriendo;
-    private String [] valoresMostrar,valoresMostrar2,valoresMostrar3,valoresMostrar4,valoresMostrar5,valoresMostrar6,valoresMostrar7,valoresMostrar8;
+    private String [] valoresAportadosMasser, valoresAportadosRoshJodesh, valoresAportadosTerumahYeladim, valoresAportadosTerreno,valoresAportadosShuljan, valoresAportadosTzedaqah,valoresAportadosKaparah,valoresAportadosArriendo, valoresAportadosSemanaTotal;
+    private String [] valoresMostrar,valoresMostrar2,valoresMostrar3,valoresMostrar4,valoresMostrar5,valoresMostrar6,valoresMostrar7,valoresMostrar8, valoresMostrar9;
     private String [] listaMeses={"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
     private ImageView fotoJaverInfoDetalle;
     private TextView nombreJaverInfoDetalle, apellidoJaverInfoDetalle,cedulaJaverInfoDetalle;
     private Button mostrarTransacciones;
     private UsuarioComunidad usuarioComunidad;
-    private NumberPicker listaAportesMasserNP, listaMesesNp,listaAportesRoshJodeshNP,listaAportesTerumahYeladimNP,listaAportesTerrenoNP,listaAportesShuljanNP,listaAportesTzedaqahNP,listaAportesKaparahNP,listaAportesArriendoNP;
+    private NumberPicker listaAportesMasserNP, listaMesesNp,listaAportesRoshJodeshNP,listaAportesTerumahYeladimNP,listaAportesTerrenoNP,listaAportesShuljanNP,listaAportesTzedaqahNP,listaAportesKaparahNP,listaAportesArriendoNP, listaAportesSemanaTotalNP;
     private List<IngresosEnero> ingresosEneroList;
     private Animation
             rotateOpen,
@@ -70,6 +70,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         listaAportesTzedaqahNP=findViewById(R.id.NPlistaValorTzedaqah);
         listaAportesKaparahNP=findViewById(R.id.NPlistaValorKaparah);
         listaAportesArriendoNP=findViewById(R.id.NPlistaValorArriendo);
+        listaAportesSemanaTotalNP= findViewById(R.id.NPlistaValorSemanaTotal);
         listaMesesNp= findViewById(R.id.listaMeses);
         MagenBoton=findViewById(R.id.magen_FButtonVentanaInfoDetalle);
         salirBoton=findViewById(R.id.cerrarInfoDetalle_FButtonVentanaInfoDetalle);
@@ -77,6 +78,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         rotateClose= AnimationUtils.loadAnimation(this,R.anim.rotacion_cerrar_boton);
         fromBottom=AnimationUtils.loadAnimation(this,R.anim.from_bottom_anim);
         toBottom=AnimationUtils.loadAnimation(this,R.anim.to_bottom_anim);
+
 
     }
     public void establecerDatos(){
@@ -105,6 +107,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
             valoresAportadosTzedaqah=new String[ingresosEneroList.size()];
             valoresAportadosKaparah=new String[ingresosEneroList.size()];
             valoresAportadosArriendo=new String[ingresosEneroList.size()];
+            valoresAportadosSemanaTotal=new String[ingresosEneroList.size()];
             for (int i = 0; i < ingresosEneroList.size(); i++) {
                 String numPago= (i+1)+"";
                 valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getMasserBaitHaM();
@@ -115,6 +118,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getTzedaqah();
                 valoresAportadosKaparah[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getKaparah();
                 valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getArriendo();
+                valoresAportadosSemanaTotal[i]= ingresosEneroList.get(i).getSemanaFechaIng()+" "+": "+ingresosEneroList.get(i).getTotalSemana()+"";
             }
             valoresMostrar= valoresAportadosMasser;
             valoresMostrar2=valoresAportadosRoshJodesh;
@@ -124,6 +128,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
             valoresMostrar6=valoresAportadosTzedaqah;
             valoresMostrar7=valoresAportadosKaparah;
             valoresMostrar8=valoresAportadosArriendo;
+            valoresMostrar9=valoresAportadosSemanaTotal;
         }else if(mesSeleccionado.trim().toLowerCase().equals("abril")){
             Toast.makeText(this,"Entre a abril",Toast.LENGTH_SHORT).show();
             valoresMostrar= listaMeses;
@@ -159,6 +164,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         listaAportesArriendoNP.setMinValue(0);
         listaAportesArriendoNP.setMaxValue((valoresMostrar8.length)-1);
         listaAportesArriendoNP.setDisplayedValues(valoresMostrar8);
+
+        listaAportesSemanaTotalNP.setMinValue(0);
+        listaAportesSemanaTotalNP.setMaxValue((valoresMostrar9.length)-1);
+        listaAportesSemanaTotalNP.setDisplayedValues(valoresMostrar9);
     }
     public void mostrarFloatingButtons(View view){
         mostrarOcultarBotones();

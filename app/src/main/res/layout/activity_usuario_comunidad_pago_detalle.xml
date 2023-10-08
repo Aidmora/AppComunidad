@@ -115,6 +115,10 @@
 
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -175,7 +179,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
-                            android:text="Mes y Día del Registro"
+                            android:text="Día del Registro"
                             android:textColor="@color/secundario"
                             android:textSize="20dp"
                             android:gravity="center"
@@ -194,6 +198,46 @@
 
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/white"
+                android:clickable="false"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp"
+                app:cardUseCompatPadding="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/mesRegistro"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Mes del Registro"
+                        android:textColor="@color/secundario"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:fontFamily="@font/inter_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minLines="2"
+                        tools:ignore="HardcodedText" />
+
+                    <NumberPicker
+                        android:id="@+id/listaMesesActivityPago"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:solidColor="@color/beige"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="70dp"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
