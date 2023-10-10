@@ -79,7 +79,7 @@ public class IngresoFebreroDAC  extends  GestorBaseDatos{
         valoresContenido.put("TotalSemana_F",totalSemana_F);
         SQLiteDatabase db= getWritableDatabase();
         if(db !=null){
-            Log.i("VerfificarIngresoE", "Esta ingresando datos en la DB para FEBRERO");
+            Log.i("VerfificarIngresoF", "Esta ingresando datos en la DB para FEBRERO");
         }
         return db.insert(TABLA_INGRESOS_FEBRERO,null,valoresContenido);
     }
