@@ -3,6 +3,7 @@ package com.example.appcomunidad.userInterface.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appcomunidad.BusinessLogic.entities.IngresosEnero;
+import com.example.appcomunidad.BusinessLogic.entities.IngresosFebrero;
 import com.example.appcomunidad.BusinessLogic.entities.UsuarioComunidad;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoEneroBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoFebreroBL;
 import com.example.appcomunidad.R;
 import com.example.appcomunidad.framework.AppException;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,15 +27,18 @@ import java.util.List;
 
 public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
     private IngresoEneroBL ingresoEneroBL;
+    private IngresoFebreroBL ingresoFebreroBL;
     private String [] valoresAportadosMasser, valoresAportadosRoshJodesh, valoresAportadosTerumahYeladim, valoresAportadosTerreno,valoresAportadosShuljan, valoresAportadosTzedaqah,valoresAportadosKaparah,valoresAportadosArriendo, valoresAportadosSemanaTotal;
     private String [] valoresMostrar,valoresMostrar2,valoresMostrar3,valoresMostrar4,valoresMostrar5,valoresMostrar6,valoresMostrar7,valoresMostrar8, valoresMostrar9;
     private String [] listaMeses={"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
+    private String [] listaSinValor={"0"};
     private ImageView fotoJaverInfoDetalle;
     private TextView nombreJaverInfoDetalle, apellidoJaverInfoDetalle,cedulaJaverInfoDetalle;
     private Button mostrarTransacciones;
     private UsuarioComunidad usuarioComunidad;
     private NumberPicker listaAportesMasserNP, listaMesesNp,listaAportesRoshJodeshNP,listaAportesTerumahYeladimNP,listaAportesTerrenoNP,listaAportesShuljanNP,listaAportesTzedaqahNP,listaAportesKaparahNP,listaAportesArriendoNP, listaAportesSemanaTotalNP;
     private List<IngresosEnero> ingresosEneroList;
+    private List<IngresosFebrero> ingresosFebreroList;
     private Animation
             rotateOpen,
             rotateClose,
@@ -57,6 +63,8 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         ingresoEneroBL= new IngresoEneroBL(this);
         usuarioComunidad= new UsuarioComunidad();
         ingresosEneroList=new ArrayList<>();
+        ingresosFebreroList= new ArrayList<>();
+        ingresoFebreroBL=new IngresoFebreroBL(this);
         mostrarTransacciones= findViewById(R.id.mostrarInformacionDetallada);
         fotoJaverInfoDetalle=findViewById(R.id.foto_javerVentanaInfoDetalle);
         nombreJaverInfoDetalle=findViewById(R.id.nombre_javerInfo);
@@ -92,82 +100,200 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
     }
     public void mostrarTransacciones(View view){
         String mesSeleccionado= listaMeses[listaMesesNp.getValue()];
+        Log.i("mostrarTransac","Esta ingresando ");
         valoresMostrar=new String[0];
+        valoresMostrar2=new String[0];
+        valoresMostrar3=new String[0];
+        valoresMostrar4=new String[0];
+        valoresMostrar5=new String[0];
+        valoresMostrar6=new String[0];
+        valoresMostrar7=new String[0];
+        valoresMostrar8=new String[0];
+        valoresMostrar9=new String[0];
+        Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
         if(mesSeleccionado.trim().toLowerCase().equals("enero")){
+            Log.i("mostrarTransac","Entro al mes de enero");
             try {
                 ingresosEneroList= ingresoEneroBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+                Log.i("mostrarTransac","obtuvo una lista vacia");
             } catch (AppException e) {
                 throw new RuntimeException(e);
             }
-            valoresAportadosMasser =new String[ingresosEneroList.size()];
-            valoresAportadosRoshJodesh=new String[ingresosEneroList.size()];
-            valoresAportadosTerumahYeladim=new String[ingresosEneroList.size()];
-            valoresAportadosTerreno=new String[ingresosEneroList.size()];
-            valoresAportadosShuljan=new String[ingresosEneroList.size()];
-            valoresAportadosTzedaqah=new String[ingresosEneroList.size()];
-            valoresAportadosKaparah=new String[ingresosEneroList.size()];
-            valoresAportadosArriendo=new String[ingresosEneroList.size()];
-            valoresAportadosSemanaTotal=new String[ingresosEneroList.size()];
-            for (int i = 0; i < ingresosEneroList.size(); i++) {
-                String numPago= (i+1)+"";
-                valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getMasserBaitHaM();
-                valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getRoshJodesh();
-                valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getTerumahYeladim();
-                valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getTerreno();
-                valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getShuljan();
-                valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getTzedaqah();
-                valoresAportadosKaparah[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getKaparah();
-                valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getArriendo();
-                valoresAportadosSemanaTotal[i]= ingresosEneroList.get(i).getSemanaFechaIng()+" "+": "+ingresosEneroList.get(i).getTotalSemana()+"";
+            Log.i("mostrarTransac","va a entrar al if para verificar si la lista esta vacia. " + ingresosEneroList.size()+"");
+            if(ingresosEneroList.size() !=0){
+                Log.i("mostrarTransac","entro al if de la lista que es diferente a vacio");
+                valoresAportadosMasser =new String[ingresosEneroList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosEneroList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosEneroList.size()];
+                valoresAportadosTerreno=new String[ingresosEneroList.size()];
+                valoresAportadosShuljan=new String[ingresosEneroList.size()];
+                valoresAportadosTzedaqah=new String[ingresosEneroList.size()];
+                valoresAportadosKaparah=new String[ingresosEneroList.size()];
+                valoresAportadosArriendo=new String[ingresosEneroList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosEneroList.size()];
+                for (int i = 0; i < ingresosEneroList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosEneroList.get(i).getSemanaFechaIng()+" "+": "+ingresosEneroList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }else {
+                Log.i("mostrarTransac","Esta ingresando por que la lista es nula");
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
             }
-            valoresMostrar= valoresAportadosMasser;
-            valoresMostrar2=valoresAportadosRoshJodesh;
-            valoresMostrar3=valoresAportadosTerumahYeladim;
-            valoresMostrar4=valoresAportadosTerreno;
-            valoresMostrar5=valoresAportadosShuljan;
-            valoresMostrar6=valoresAportadosTzedaqah;
-            valoresMostrar7=valoresAportadosKaparah;
-            valoresMostrar8=valoresAportadosArriendo;
-            valoresMostrar9=valoresAportadosSemanaTotal;
-        }else if(mesSeleccionado.trim().toLowerCase().equals("abril")){
-            Toast.makeText(this,"Entre a abril",Toast.LENGTH_SHORT).show();
-            valoresMostrar= listaMeses;
+        }else if(mesSeleccionado.trim().toLowerCase().equals("febrero")) {
+            Log.i("mostrarTransac","Entro al mes de febrero");
+            try {
+                ingresosFebreroList = ingresoFebreroBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+            } catch (AppException e) {
+                throw new RuntimeException(e);
+            }
+            if(ingresosFebreroList.size() !=0){
+                valoresAportadosMasser =new String[ingresosFebreroList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosFebreroList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosFebreroList.size()];
+                valoresAportadosTerreno=new String[ingresosFebreroList.size()];
+                valoresAportadosShuljan=new String[ingresosFebreroList.size()];
+                valoresAportadosTzedaqah=new String[ingresosFebreroList.size()];
+                valoresAportadosKaparah=new String[ingresosFebreroList.size()];
+                valoresAportadosArriendo=new String[ingresosFebreroList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosFebreroList.size()];
+                for (int i = 0; i < ingresosFebreroList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosFebreroList.get(i).getSemanaFechaIng()+" "+": "+ingresosFebreroList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }
         }
-        listaAportesMasserNP.setMinValue(0);
-        listaAportesMasserNP.setMaxValue((valoresMostrar.length)-1);
-        listaAportesMasserNP.setDisplayedValues(valoresMostrar);
+        Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+        if(valoresMostrar.length >= 1 ){
+            Log.i("mostrarTransac","la longitud del arreglo mostrar es : "+ valoresMostrar.length+ " ");
+            listaAportesMasserNP.setMinValue(0);
+            Log.i("mostrarTransac","la longitud del arreglo mostrar es : "+ valoresMostrar.length+ " ");
+            listaAportesMasserNP.setMaxValue((valoresMostrar.length)-1);
+            Log.i("mostrarTransac","la longitud del arreglo mostrar es : "+ valoresMostrar.length+ " ");
+            listaAportesMasserNP.setDisplayedValues(valoresMostrar);
+            valoresMostrar=new String[0];
+            Log.i("mostrarTransac","la longitud del arreglo mostrar es : "+ valoresMostrar.length+ " ");
+        }else if (valoresMostrar.length == 0){
+            listaAportesMasserNP.setMinValue(0);
+            listaAportesMasserNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesMasserNP.setDisplayedValues(listaSinValor);
+        }
 
-        listaAportesRoshJodeshNP.setMinValue(0);
-        listaAportesRoshJodeshNP.setMaxValue((valoresMostrar2.length)-1);
-        listaAportesRoshJodeshNP.setDisplayedValues(valoresMostrar2);
+        if(valoresMostrar2.length >= 1 ){
+            listaAportesRoshJodeshNP.setMinValue(0);
+            listaAportesRoshJodeshNP.setMaxValue((valoresMostrar2.length)-1);
+            listaAportesRoshJodeshNP.setDisplayedValues(valoresMostrar2);
+        }else if(valoresMostrar2.length == 0){
+            listaAportesRoshJodeshNP.setMinValue(0);
+            listaAportesRoshJodeshNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesRoshJodeshNP.setDisplayedValues(listaSinValor);
+        }
 
-        listaAportesTerumahYeladimNP.setMinValue(0);
-        listaAportesTerumahYeladimNP.setMaxValue((valoresMostrar3.length)-1);
-        listaAportesTerumahYeladimNP.setDisplayedValues(valoresMostrar3);
+        if(valoresMostrar3.length >= 1 ){
+            listaAportesTerumahYeladimNP.setMinValue(0);
+            listaAportesTerumahYeladimNP.setMaxValue((valoresMostrar3.length)-1);
+            listaAportesTerumahYeladimNP.setDisplayedValues(valoresMostrar3);
+        }else if(valoresMostrar3.length == 0){
+            listaAportesTerumahYeladimNP.setMinValue(0);
+            listaAportesTerumahYeladimNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesTerumahYeladimNP.setDisplayedValues(listaSinValor);
+        }
 
-        listaAportesTerrenoNP.setMinValue(0);
-        listaAportesTerrenoNP.setMaxValue((valoresMostrar4.length)-1);
-        listaAportesTerrenoNP.setDisplayedValues(valoresMostrar4);
+        if(valoresMostrar4.length >= 1 ){
+            listaAportesTerrenoNP.setMinValue(0);
+            listaAportesTerrenoNP.setMaxValue((valoresMostrar4.length)-1);
+            listaAportesTerrenoNP.setDisplayedValues(valoresMostrar4);
+        }else if(valoresMostrar4.length== 0 ){
+            listaAportesTerrenoNP.setMinValue(0);
+            listaAportesTerrenoNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesTerrenoNP.setDisplayedValues(listaSinValor);
+        }
 
-        listaAportesShuljanNP.setMinValue(0);
-        listaAportesShuljanNP.setMaxValue((valoresMostrar5.length)-1);
-        listaAportesShuljanNP.setDisplayedValues(valoresMostrar5);
+        if(valoresMostrar5.length >= 1 ){
+            listaAportesShuljanNP.setMinValue(0);
+            listaAportesShuljanNP.setMaxValue((valoresMostrar5.length)-1);
+            listaAportesShuljanNP.setDisplayedValues(valoresMostrar5);
+        }else if(valoresMostrar5.length == 0){
+            listaAportesShuljanNP.setMinValue(0);
+            listaAportesShuljanNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesShuljanNP.setDisplayedValues(listaSinValor);
+        }
 
-        listaAportesTzedaqahNP.setMinValue(0);
-        listaAportesTzedaqahNP.setMaxValue((valoresMostrar6.length)-1);
-        listaAportesTzedaqahNP.setDisplayedValues(valoresMostrar6);
+        if(valoresMostrar6.length >= 1 ){
+            listaAportesTzedaqahNP.setMinValue(0);
+            listaAportesTzedaqahNP.setMaxValue((valoresMostrar6.length)-1);
+            listaAportesTzedaqahNP.setDisplayedValues(valoresMostrar6);
+        }else if (valoresMostrar6.length == 0){
+            listaAportesTzedaqahNP.setMinValue(0);
+            listaAportesTzedaqahNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesTzedaqahNP.setDisplayedValues(listaSinValor);
+        }
 
-        listaAportesKaparahNP.setMinValue(0);
-        listaAportesKaparahNP.setMaxValue((valoresMostrar7.length)-1);
-        listaAportesKaparahNP.setDisplayedValues(valoresMostrar7);
+        if(valoresMostrar7.length >= 1 ){
+            listaAportesKaparahNP.setMinValue(0);
+            listaAportesKaparahNP.setMaxValue((valoresMostrar7.length)-1);
+            listaAportesKaparahNP.setDisplayedValues(valoresMostrar7);
+        }else if(valoresMostrar7.length == 0){
+            listaAportesKaparahNP.setMinValue(0);
+            listaAportesKaparahNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesKaparahNP.setDisplayedValues(listaSinValor);
+        }
 
-        listaAportesArriendoNP.setMinValue(0);
-        listaAportesArriendoNP.setMaxValue((valoresMostrar8.length)-1);
-        listaAportesArriendoNP.setDisplayedValues(valoresMostrar8);
+        if(valoresMostrar8.length >= 1 ){
+            listaAportesArriendoNP.setMinValue(0);
+            listaAportesArriendoNP.setMaxValue((valoresMostrar8.length)-1);
+            listaAportesArriendoNP.setDisplayedValues(valoresMostrar8);
+        }else if(valoresMostrar8.length == 0 ){
+            listaAportesArriendoNP.setMinValue(0);
+            listaAportesArriendoNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesArriendoNP.setDisplayedValues(listaSinValor);
+        }
 
-        listaAportesSemanaTotalNP.setMinValue(0);
-        listaAportesSemanaTotalNP.setMaxValue((valoresMostrar9.length)-1);
-        listaAportesSemanaTotalNP.setDisplayedValues(valoresMostrar9);
+        if(valoresMostrar9.length >= 1 ){
+            listaAportesSemanaTotalNP.setMinValue(0);
+            listaAportesSemanaTotalNP.setMaxValue((valoresMostrar9.length)-1);
+            listaAportesSemanaTotalNP.setDisplayedValues(valoresMostrar9);
+        }else if(valoresMostrar9.length == 0 ){
+            listaAportesSemanaTotalNP.setMinValue(0);
+            listaAportesSemanaTotalNP.setMaxValue((listaSinValor.length)-1);
+            listaAportesSemanaTotalNP.setDisplayedValues(listaSinValor);
+        }
+
     }
     public void mostrarFloatingButtons(View view){
         mostrarOcultarBotones();

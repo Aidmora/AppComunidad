@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.appcomunidad.BusinessLogic.entities.IngresosEnero;
 import com.example.appcomunidad.BusinessLogic.entities.UsuarioComunidad;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoEneroBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoFebreroBL;
 import com.example.appcomunidad.BusinessLogic.utilities.ValidarDatos;
 import com.example.appcomunidad.BusinessLogic.utilities.VerificarDatos;
 import com.example.appcomunidad.R;
@@ -31,6 +32,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
     private Button botonGuardarInfo;
     private UsuarioComunidad usuarioComunidad;
     private IngresoEneroBL ingresoEneroBL;
+    private IngresoFebreroBL ingresoFebreroBL;
     private VerificarDatos verificarDatos;
     private NumberPicker listaAnnosNP, listaMesesNP;
     private String [] listaAnnosStr= {"2023","2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034"};
@@ -54,6 +56,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
         verificarDatos= new VerificarDatos(this);
         usuarioComunidad= new UsuarioComunidad();
         ingresoEneroBL= new IngresoEneroBL(this);
+        ingresoFebreroBL=new IngresoFebreroBL(this);
         fotoJaverInfor= findViewById(R.id.foto_javerInfo);
         nombreJaverInfo=findViewById(R.id.nombre_javerInfo);
         apellidoJaverInfo=findViewById(R.id.apellido_javerInfo);
@@ -152,8 +155,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
 
                     double semanaTotal = MasserBaitHaMDb + RoshJodeshDb + TerumahYeladimDb + TerrenoDb + ShuljanDb + TzedaqahDb + KaparahDb + ArriendoDb;
 
-                    ingresoEneroBL.insertarRegistro(
-                            "Enero",
+                    ingresoEneroBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],
                             mesAñoStr,
                             usuarioComunidad.getIdUsuarioComunidad(),
                             usuarioComunidad.getNombreJaver(),
@@ -176,10 +178,57 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                     intent.putExtra("usuarioCom_seleccionado2",  usuarioComunidad);
                     startActivity(intent);
                 }else if(listaMeses[listaMesesNP.getValue()].equals("febrero")){
-                    Toast.makeText(alertaConfirmacionDatos.getContext(),"Estamos en febrero!!",Toast.LENGTH_SHORT).show();
+                    String MasserBaitHaMStr = ingresoMasserBaitHaM.getText().toString();
+                    double MasserBaitHaMDb = verificarDatos.valorRegistroIngresado(MasserBaitHaMStr);
+
+                    String RoshJodeshStr = ingresoRoshJodesh.getText().toString();
+                    double RoshJodeshDb = verificarDatos.valorRegistroIngresado(RoshJodeshStr);
+
+                    String TerumahYeladimStr = ingresoTerumahYeladim.getText().toString();
+                    double TerumahYeladimDb = verificarDatos.valorRegistroIngresado(TerumahYeladimStr);
+
+                    String TerrenoStr = ingresoTerreno.getText().toString();
+                    double TerrenoDb = verificarDatos.valorRegistroIngresado(TerrenoStr);
+
+                    String ShuljanStr = ingresoShuljan.getText().toString();
+                    double ShuljanDb = verificarDatos.valorRegistroIngresado(ShuljanStr);
+
+                    String TzedaqahStr = ingresoTzedaqah.getText().toString();
+                    double TzedaqahDb = verificarDatos.valorRegistroIngresado(TzedaqahStr);
+
+                    String KaparahStr = ingresoKaparah.getText().toString();
+                    double KaparahDb = verificarDatos.valorRegistroIngresado(KaparahStr);
+
+                    String ArriendoStr = ingresoArriendo.getText().toString();
+                    double ArriendoDb = verificarDatos.valorRegistroIngresado(ArriendoStr);
+
+                    String mesAñoStr = listaAnnosStr[listaAnnosNP.getValue()];
+                    String fechaRegistro = ingresoFechaRegistro.getText().toString();
+                    double semanaTotal = MasserBaitHaMDb + RoshJodeshDb + TerumahYeladimDb + TerrenoDb + ShuljanDb + TzedaqahDb + KaparahDb + ArriendoDb;
+
+                    ingresoFebreroBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],
+                            mesAñoStr,
+                            usuarioComunidad.getIdUsuarioComunidad(),
+                            usuarioComunidad.getNombreJaver(),
+                            usuarioComunidad.getApellidoJaver(),
+                            usuarioComunidad.getCedula(),
+                            fechaRegistro,
+                            MasserBaitHaMStr,
+                            RoshJodeshStr,
+                            TerumahYeladimStr,
+                            TerrenoStr,
+                            ShuljanStr,
+                            TzedaqahStr,
+                            KaparahStr,
+                            ArriendoStr,
+                            semanaTotal
+                    );
+                    Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
+                    finish();
+                    Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
+                    intent.putExtra("usuarioCom_seleccionado2",  usuarioComunidad);
+                    startActivity(intent);
                 }
-
-
             }
         });
         alertaConfirmacionDatos.setNegativeButton("No", new DialogInterface.OnClickListener() {
