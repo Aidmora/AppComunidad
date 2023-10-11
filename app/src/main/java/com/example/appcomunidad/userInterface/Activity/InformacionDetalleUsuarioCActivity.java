@@ -58,12 +58,14 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
     private IngresoOctubreBL ingresoOctubreBL;
     private IngresoNoviembreBL ingresoNoviembreBL;
     private IngresoDiciembreBL ingresoDiciembreBL;
+    private double totalMesValor;
     private String [] valoresAportadosMasser, valoresAportadosRoshJodesh, valoresAportadosTerumahYeladim, valoresAportadosTerreno,valoresAportadosShuljan, valoresAportadosTzedaqah,valoresAportadosKaparah,valoresAportadosArriendo, valoresAportadosSemanaTotal;
     private String [] valoresMostrar,valoresMostrar2,valoresMostrar3,valoresMostrar4,valoresMostrar5,valoresMostrar6,valoresMostrar7,valoresMostrar8, valoresMostrar9;
     private String [] listaMeses={"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
     private String [] listaSinValor={"0"};
+    private double [] listaValorTotalMes;
     private ImageView fotoJaverInfoDetalle;
-    private TextView nombreJaverInfoDetalle, apellidoJaverInfoDetalle,cedulaJaverInfoDetalle;
+    private TextView nombreJaverInfoDetalle, apellidoJaverInfoDetalle,cedulaJaverInfoDetalle, valorTotalMes;
     private Button mostrarTransacciones;
     private UsuarioComunidad usuarioComunidad;
     private NumberPicker listaAportesMasserNP, listaMesesNp,listaAportesRoshJodeshNP,listaAportesTerumahYeladimNP,listaAportesTerrenoNP,listaAportesShuljanNP,listaAportesTzedaqahNP,listaAportesKaparahNP,listaAportesArriendoNP, listaAportesSemanaTotalNP;
@@ -132,10 +134,12 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         listaMesesNp= findViewById(R.id.listaMeses);
         MagenBoton=findViewById(R.id.magen_FButtonVentanaInfoDetalle);
         salirBoton=findViewById(R.id.cerrarInfoDetalle_FButtonVentanaInfoDetalle);
+        valorTotalMes= findViewById(R.id.balanceTotalMes_Usuario);
         rotateOpen = AnimationUtils.loadAnimation(this, R.anim.rotacion_abrir_boton);
         rotateClose= AnimationUtils.loadAnimation(this,R.anim.rotacion_cerrar_boton);
         fromBottom=AnimationUtils.loadAnimation(this,R.anim.from_bottom_anim);
         toBottom=AnimationUtils.loadAnimation(this,R.anim.to_bottom_anim);
+
 
 
     }
@@ -146,7 +150,6 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         nombreJaverInfoDetalle.setText(usuarioComunidad.getNombreJaver());
         apellidoJaverInfoDetalle.setText(usuarioComunidad.getApellidoJaver());
         cedulaJaverInfoDetalle.setText(usuarioComunidad.getCedula());
-
     }
     public void mostrarTransacciones(View view){
         String mesSeleccionado= listaMeses[listaMesesNp.getValue()];
@@ -160,6 +163,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         valoresMostrar7=new String[0];
         valoresMostrar8=new String[0];
         valoresMostrar9=new String[0];
+        totalMesValor=0;
         Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
         if(mesSeleccionado.trim().toLowerCase().equals("enero")){
             Log.i("mostrarTransac","Entro al mes de enero");
@@ -181,6 +185,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosEneroList.size()];
                 valoresAportadosArriendo=new String[ingresosEneroList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosEneroList.size()];
+                listaValorTotalMes= new double[ingresosEneroList.size()];
                 for (int i = 0; i < ingresosEneroList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getMasserBaitHaM();
@@ -192,6 +197,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosEneroList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosEneroList.get(i).getSemanaFechaIng()+" "+": "+ingresosEneroList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosEneroList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -224,6 +233,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosFebreroList.size()];
                 valoresAportadosArriendo=new String[ingresosFebreroList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosFebreroList.size()];
+                listaValorTotalMes= new double[ingresosFebreroList.size()];
                 for (int i = 0; i < ingresosFebreroList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getMasserBaitHaM();
@@ -235,6 +245,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosFebreroList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosFebreroList.get(i).getSemanaFechaIng()+" "+": "+ingresosFebreroList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosFebreroList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -264,6 +278,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosMarzoList.size()];
                 valoresAportadosArriendo=new String[ingresosMarzoList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosMarzoList.size()];
+                listaValorTotalMes= new double[ingresosMarzoList.size()];
                 for (int i = 0; i < ingresosMarzoList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosMarzoList.get(i).getMasserBaitHaM();
@@ -275,6 +290,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  + ingresosMarzoList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosMarzoList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosMarzoList.get(i).getSemanaFechaIng()+" "+": "+ingresosMarzoList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosMarzoList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -304,6 +323,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosAbrilList.size()];
                 valoresAportadosArriendo=new String[ingresosAbrilList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosAbrilList.size()];
+                listaValorTotalMes= new double[ingresosAbrilList.size()];
                 for (int i = 0; i < ingresosAbrilList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosAbrilList.get(i).getMasserBaitHaM();
@@ -315,6 +335,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  + ingresosAbrilList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosAbrilList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosAbrilList.get(i).getSemanaFechaIng()+" "+": "+ingresosAbrilList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosAbrilList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -344,6 +368,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosMayoList.size()];
                 valoresAportadosArriendo=new String[ingresosMayoList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosMayoList.size()];
+                listaValorTotalMes= new double[ingresosMayoList.size()];
                 for (int i = 0; i < ingresosMayoList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosMayoList.get(i).getMasserBaitHaM();
@@ -355,6 +380,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosMayoList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosMayoList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosMayoList.get(i).getSemanaFechaIng()+" "+": "+ingresosMayoList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosMayoList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -384,6 +413,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosJunioList.size()];
                 valoresAportadosArriendo=new String[ingresosJunioList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosJunioList.size()];
+                listaValorTotalMes= new double[ingresosJunioList.size()];
                 for (int i = 0; i < ingresosJunioList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getMasserBaitHaM();
@@ -395,6 +425,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosJunioList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosJunioList.get(i).getSemanaFechaIng()+" "+": "+ingresosJunioList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosJunioList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -424,6 +458,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosJulioList.size()];
                 valoresAportadosArriendo=new String[ingresosJulioList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosJulioList.size()];
+                listaValorTotalMes= new double[ingresosJulioList.size()];
                 for (int i = 0; i < ingresosJulioList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getMasserBaitHaM();
@@ -435,6 +470,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosJulioList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosJulioList.get(i).getSemanaFechaIng()+" "+": "+ingresosJulioList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosJulioList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -464,6 +503,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosAgostoList.size()];
                 valoresAportadosArriendo=new String[ingresosAgostoList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosAgostoList.size()];
+                listaValorTotalMes= new double[ingresosAgostoList.size()];
                 for (int i = 0; i < ingresosAgostoList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosAgostoList.get(i).getMasserBaitHaM();
@@ -475,6 +515,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosAgostoList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosAgostoList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosAgostoList.get(i).getSemanaFechaIng()+" "+": "+ingresosAgostoList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosAgostoList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -504,6 +548,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosSeptiembreList.size()];
                 valoresAportadosArriendo=new String[ingresosSeptiembreList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosSeptiembreList.size()];
+                listaValorTotalMes= new double[ingresosSeptiembreList.size()];
                 for (int i = 0; i < ingresosSeptiembreList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosSeptiembreList.get(i).getMasserBaitHaM();
@@ -515,6 +560,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosSeptiembreList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosSeptiembreList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosSeptiembreList.get(i).getSemanaFechaIng()+" "+": "+ingresosSeptiembreList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosSeptiembreList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -544,6 +593,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosOctubreList.size()];
                 valoresAportadosArriendo=new String[ingresosOctubreList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosOctubreList.size()];
+                listaValorTotalMes= new double[ingresosOctubreList.size()];
                 for (int i = 0; i < ingresosOctubreList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosOctubreList.get(i).getMasserBaitHaM();
@@ -555,6 +605,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosOctubreList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  +ingresosOctubreList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosOctubreList.get(i).getSemanaFechaIng()+" "+": "+ingresosOctubreList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosOctubreList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -584,6 +638,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosNoviembreList.size()];
                 valoresAportadosArriendo=new String[ingresosNoviembreList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosNoviembreList.size()];
+                listaValorTotalMes= new double[ingresosNoviembreList.size()];
                 for (int i = 0; i < ingresosNoviembreList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosNoviembreList.get(i).getMasserBaitHaM();
@@ -595,6 +650,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosNoviembreList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  +ingresosNoviembreList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosNoviembreList.get(i).getSemanaFechaIng()+" "+": "+ingresosNoviembreList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosNoviembreList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -624,6 +683,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresAportadosKaparah=new String[ingresosDiciembreList.size()];
                 valoresAportadosArriendo=new String[ingresosDiciembreList.size()];
                 valoresAportadosSemanaTotal=new String[ingresosDiciembreList.size()];
+                listaValorTotalMes= new double[ingresosDiciembreList.size()];
                 for (int i = 0; i < ingresosDiciembreList.size(); i++) {
                     String numPago= (i+1)+"";
                     valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosDiciembreList.get(i).getMasserBaitHaM();
@@ -635,6 +695,10 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                     valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosDiciembreList.get(i).getKaparah();
                     valoresAportadosArriendo[i]="Pago " + numPago  +": "  +ingresosDiciembreList.get(i).getArriendo();
                     valoresAportadosSemanaTotal[i]= ingresosDiciembreList.get(i).getSemanaFechaIng()+" "+": "+ingresosDiciembreList.get(i).getTotalSemana()+"";
+                    listaValorTotalMes [i] = ingresosDiciembreList.get(i).getTotalSemana();
+                }
+                for (int i = 0; i < listaValorTotalMes.length; i++) {
+                    totalMesValor += listaValorTotalMes[i];
                 }
                 valoresMostrar= valoresAportadosMasser;
                 valoresMostrar2=valoresAportadosRoshJodesh;
@@ -649,6 +713,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
             }
         }
         Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+        valorTotalMes.setText(totalMesValor+"");
         if(valoresMostrar.length >= 1 ){
             Log.i("mostrarTransac","la longitud del arreglo mostrar es : "+ valoresMostrar.length+ " ");
             listaAportesMasserNP.setDisplayedValues(null);
