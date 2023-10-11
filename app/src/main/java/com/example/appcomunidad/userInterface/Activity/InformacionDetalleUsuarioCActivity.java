@@ -14,16 +14,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appcomunidad.BusinessLogic.entities.IngresosAbril;
+import com.example.appcomunidad.BusinessLogic.entities.IngresosAgosto;
+import com.example.appcomunidad.BusinessLogic.entities.IngresosDiciembre;
 import com.example.appcomunidad.BusinessLogic.entities.IngresosEnero;
 import com.example.appcomunidad.BusinessLogic.entities.IngresosFebrero;
+import com.example.appcomunidad.BusinessLogic.entities.IngresosJulio;
+import com.example.appcomunidad.BusinessLogic.entities.IngresosJunio;
 import com.example.appcomunidad.BusinessLogic.entities.IngresosMarzo;
 import com.example.appcomunidad.BusinessLogic.entities.IngresosMayo;
+import com.example.appcomunidad.BusinessLogic.entities.IngresosNoviembre;
+import com.example.appcomunidad.BusinessLogic.entities.IngresosOctubre;
+import com.example.appcomunidad.BusinessLogic.entities.IngresosSeptiembre;
 import com.example.appcomunidad.BusinessLogic.entities.UsuarioComunidad;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoAbrilBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoAgostoBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoDiciembreBL;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoEneroBL;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoFebreroBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoJulioBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoJunioBL;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoMarzoBL;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoMayoBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoNoviembreBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoOctubreBL;
+import com.example.appcomunidad.BusinessLogic.managers.IngresoSeptiembreBL;
 import com.example.appcomunidad.R;
 import com.example.appcomunidad.framework.AppException;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,6 +51,13 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
     private IngresoMarzoBL ingresoMarzoBL;
     private IngresoAbrilBL ingresoAbrilBL;
     private IngresoMayoBL ingresoMayoBL;
+    private IngresoJunioBL ingresoJunioBL;
+    private IngresoJulioBL ingresoJulioBL;
+    private IngresoAgostoBL ingresoAgostoBL;
+    private IngresoSeptiembreBL ingresoSeptiembreBL;
+    private IngresoOctubreBL ingresoOctubreBL;
+    private IngresoNoviembreBL ingresoNoviembreBL;
+    private IngresoDiciembreBL ingresoDiciembreBL;
     private String [] valoresAportadosMasser, valoresAportadosRoshJodesh, valoresAportadosTerumahYeladim, valoresAportadosTerreno,valoresAportadosShuljan, valoresAportadosTzedaqah,valoresAportadosKaparah,valoresAportadosArriendo, valoresAportadosSemanaTotal;
     private String [] valoresMostrar,valoresMostrar2,valoresMostrar3,valoresMostrar4,valoresMostrar5,valoresMostrar6,valoresMostrar7,valoresMostrar8, valoresMostrar9;
     private String [] listaMeses={"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
@@ -51,6 +72,13 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
     private List<IngresosMarzo>  ingresosMarzoList;
     private List<IngresosAbril> ingresosAbrilList;
     private List<IngresosMayo> ingresosMayoList;
+    private List<IngresosJunio> ingresosJunioList;
+    private List<IngresosJulio> ingresosJulioList;
+    private List<IngresosAgosto> ingresosAgostoList;
+    private List<IngresosSeptiembre> ingresosSeptiembreList;
+    private List <IngresosOctubre> ingresosOctubreList;
+    private List<IngresosNoviembre> ingresosNoviembreList;
+    private List<IngresosDiciembre> ingresosDiciembreList;
     private Animation
             rotateOpen,
             rotateClose,
@@ -80,6 +108,13 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         ingresoMarzoBL= new IngresoMarzoBL(this);
         ingresoAbrilBL= new IngresoAbrilBL(this);
         ingresoMayoBL= new IngresoMayoBL(this);
+        ingresoJunioBL=  new IngresoJunioBL(this);
+        ingresoJulioBL= new IngresoJulioBL(this);
+        ingresoAgostoBL= new IngresoAgostoBL(this) ;
+        ingresoSeptiembreBL= new IngresoSeptiembreBL(this);
+        ingresoOctubreBL= new IngresoOctubreBL(this);
+        ingresoNoviembreBL= new IngresoNoviembreBL(this );
+        ingresoDiciembreBL= new IngresoDiciembreBL(this);
         mostrarTransacciones= findViewById(R.id.mostrarInformacionDetallada);
         fotoJaverInfoDetalle=findViewById(R.id.foto_javerVentanaInfoDetalle);
         nombreJaverInfoDetalle=findViewById(R.id.nombre_javerInfo);
@@ -292,7 +327,7 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
                 }
-            }else if(mesSeleccionado.trim().toLowerCase().equals("mayo")){
+        }else if(mesSeleccionado.trim().toLowerCase().equals("mayo")){
             Log.i("mostrarTransac","Entro al mes de Mayo");
             try {
                 ingresosMayoList = ingresoMayoBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
@@ -332,7 +367,287 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
                 }
+        }else if(mesSeleccionado.trim().toLowerCase().equals("junio")){
+            Log.i("mostrarTransac","Entro al mes de Junio");
+            try {
+                ingresosJunioList = ingresoJunioBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+            } catch (AppException e) {
+                throw new RuntimeException(e);
             }
+            if(ingresosJunioList.size() !=0){
+                valoresAportadosMasser =new String[ingresosJunioList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosJunioList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosJunioList.size()];
+                valoresAportadosTerreno=new String[ingresosJunioList.size()];
+                valoresAportadosShuljan=new String[ingresosJunioList.size()];
+                valoresAportadosTzedaqah=new String[ingresosJunioList.size()];
+                valoresAportadosKaparah=new String[ingresosJunioList.size()];
+                valoresAportadosArriendo=new String[ingresosJunioList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosJunioList.size()];
+                for (int i = 0; i < ingresosJunioList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosJunioList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosJunioList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosJunioList.get(i).getSemanaFechaIng()+" "+": "+ingresosJunioList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }
+        }else if(mesSeleccionado.trim().toLowerCase().equals("julio")){
+            Log.i("mostrarTransac","Entro al mes de Julio");
+            try {
+                ingresosJulioList = ingresoJulioBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+            } catch (AppException e) {
+                throw new RuntimeException(e);
+            }
+            if(ingresosJulioList.size() !=0){
+                valoresAportadosMasser =new String[ingresosJulioList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosJulioList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosJulioList.size()];
+                valoresAportadosTerreno=new String[ingresosJulioList.size()];
+                valoresAportadosShuljan=new String[ingresosJulioList.size()];
+                valoresAportadosTzedaqah=new String[ingresosJulioList.size()];
+                valoresAportadosKaparah=new String[ingresosJulioList.size()];
+                valoresAportadosArriendo=new String[ingresosJulioList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosJulioList.size()];
+                for (int i = 0; i < ingresosJulioList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosJulioList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosJulioList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosJulioList.get(i).getSemanaFechaIng()+" "+": "+ingresosJulioList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }
+        }else if(mesSeleccionado.trim().toLowerCase().equals("agosto")){
+            Log.i("mostrarTransac","Entro al mes de Agosto");
+            try {
+                ingresosAgostoList = ingresoAgostoBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+            } catch (AppException e) {
+                throw new RuntimeException(e);
+            }
+            if(ingresosAgostoList.size() !=0){
+                valoresAportadosMasser =new String[ingresosAgostoList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosAgostoList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosAgostoList.size()];
+                valoresAportadosTerreno=new String[ingresosAgostoList.size()];
+                valoresAportadosShuljan=new String[ingresosAgostoList.size()];
+                valoresAportadosTzedaqah=new String[ingresosAgostoList.size()];
+                valoresAportadosKaparah=new String[ingresosAgostoList.size()];
+                valoresAportadosArriendo=new String[ingresosAgostoList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosAgostoList.size()];
+                for (int i = 0; i < ingresosAgostoList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosAgostoList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosAgostoList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosAgostoList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosAgostoList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosAgostoList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosAgostoList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosAgostoList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosAgostoList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosAgostoList.get(i).getSemanaFechaIng()+" "+": "+ingresosAgostoList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }
+        }else if(mesSeleccionado.trim().toLowerCase().equals("septiembre")){
+            Log.i("mostrarTransac","Entro al mes de Septiembre");
+            try {
+                ingresosSeptiembreList = ingresoSeptiembreBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+            } catch (AppException e) {
+                throw new RuntimeException(e);
+            }
+            if(ingresosSeptiembreList.size() !=0){
+                valoresAportadosMasser =new String[ingresosSeptiembreList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosSeptiembreList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosSeptiembreList.size()];
+                valoresAportadosTerreno=new String[ingresosSeptiembreList.size()];
+                valoresAportadosShuljan=new String[ingresosSeptiembreList.size()];
+                valoresAportadosTzedaqah=new String[ingresosSeptiembreList.size()];
+                valoresAportadosKaparah=new String[ingresosSeptiembreList.size()];
+                valoresAportadosArriendo=new String[ingresosSeptiembreList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosSeptiembreList.size()];
+                for (int i = 0; i < ingresosSeptiembreList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosSeptiembreList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosSeptiembreList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosSeptiembreList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosSeptiembreList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosSeptiembreList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosSeptiembreList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosSeptiembreList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  + ingresosSeptiembreList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosSeptiembreList.get(i).getSemanaFechaIng()+" "+": "+ingresosSeptiembreList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }
+        }else if (mesSeleccionado.trim().toLowerCase().equals("octubre")){
+            Log.i("mostrarTransac","Entro al mes de Octubre");
+            try {
+                ingresosOctubreList = ingresoOctubreBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+            } catch (AppException e) {
+                throw new RuntimeException(e);
+            }
+            if(ingresosOctubreList.size() !=0){
+                valoresAportadosMasser =new String[ingresosOctubreList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosOctubreList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosOctubreList.size()];
+                valoresAportadosTerreno=new String[ingresosOctubreList.size()];
+                valoresAportadosShuljan=new String[ingresosOctubreList.size()];
+                valoresAportadosTzedaqah=new String[ingresosOctubreList.size()];
+                valoresAportadosKaparah=new String[ingresosOctubreList.size()];
+                valoresAportadosArriendo=new String[ingresosOctubreList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosOctubreList.size()];
+                for (int i = 0; i < ingresosOctubreList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosOctubreList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosOctubreList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosOctubreList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosOctubreList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosOctubreList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosOctubreList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosOctubreList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  +ingresosOctubreList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosOctubreList.get(i).getSemanaFechaIng()+" "+": "+ingresosOctubreList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }
+        }else if(mesSeleccionado.trim().toLowerCase().equals("noviembre")){
+            Log.i("mostrarTransac","Entro al mes de Noviembre");
+            try {
+                ingresosNoviembreList = ingresoNoviembreBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+            } catch (AppException e) {
+                throw new RuntimeException(e);
+            }
+            if(ingresosNoviembreList.size() !=0){
+                valoresAportadosMasser =new String[ingresosNoviembreList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosNoviembreList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosNoviembreList.size()];
+                valoresAportadosTerreno=new String[ingresosNoviembreList.size()];
+                valoresAportadosShuljan=new String[ingresosNoviembreList.size()];
+                valoresAportadosTzedaqah=new String[ingresosNoviembreList.size()];
+                valoresAportadosKaparah=new String[ingresosNoviembreList.size()];
+                valoresAportadosArriendo=new String[ingresosNoviembreList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosNoviembreList.size()];
+                for (int i = 0; i < ingresosNoviembreList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosNoviembreList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosNoviembreList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosNoviembreList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosNoviembreList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosNoviembreList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosNoviembreList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosNoviembreList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  +ingresosNoviembreList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosNoviembreList.get(i).getSemanaFechaIng()+" "+": "+ingresosNoviembreList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }
+        }else if(mesSeleccionado.trim().toLowerCase().equals("diciembre")){
+            Log.i("mostrarTransac","Entro al mes de Diciembre");
+            try {
+                ingresosDiciembreList = ingresoDiciembreBL.leerRegistroPorId(usuarioComunidad.getIdUsuarioComunidad());
+            } catch (AppException e) {
+                throw new RuntimeException(e);
+            }
+            if(ingresosDiciembreList.size() !=0){
+                valoresAportadosMasser =new String[ingresosDiciembreList.size()];
+                valoresAportadosRoshJodesh=new String[ingresosDiciembreList.size()];
+                valoresAportadosTerumahYeladim=new String[ingresosDiciembreList.size()];
+                valoresAportadosTerreno=new String[ingresosDiciembreList.size()];
+                valoresAportadosShuljan=new String[ingresosDiciembreList.size()];
+                valoresAportadosTzedaqah=new String[ingresosDiciembreList.size()];
+                valoresAportadosKaparah=new String[ingresosDiciembreList.size()];
+                valoresAportadosArriendo=new String[ingresosDiciembreList.size()];
+                valoresAportadosSemanaTotal=new String[ingresosDiciembreList.size()];
+                for (int i = 0; i < ingresosDiciembreList.size(); i++) {
+                    String numPago= (i+1)+"";
+                    valoresAportadosMasser[i]="Pago " + numPago  +": "  +ingresosDiciembreList.get(i).getMasserBaitHaM();
+                    valoresAportadosRoshJodesh[i]="Pago " + numPago  +": "  + ingresosDiciembreList.get(i).getRoshJodesh();
+                    valoresAportadosTerumahYeladim[i]="Pago " + numPago  +": "  + ingresosDiciembreList.get(i).getTerumahYeladim();
+                    valoresAportadosTerreno[i]="Pago " + numPago  +": "  + ingresosDiciembreList.get(i).getTerreno();
+                    valoresAportadosShuljan[i]="Pago " + numPago  +": "  + ingresosDiciembreList.get(i).getShuljan();
+                    valoresAportadosTzedaqah[i]="Pago " + numPago  +": "  + ingresosDiciembreList.get(i).getTzedaqah();
+                    valoresAportadosKaparah[i]="Pago " + numPago  +": "  +ingresosDiciembreList.get(i).getKaparah();
+                    valoresAportadosArriendo[i]="Pago " + numPago  +": "  +ingresosDiciembreList.get(i).getArriendo();
+                    valoresAportadosSemanaTotal[i]= ingresosDiciembreList.get(i).getSemanaFechaIng()+" "+": "+ingresosDiciembreList.get(i).getTotalSemana()+"";
+                }
+                valoresMostrar= valoresAportadosMasser;
+                valoresMostrar2=valoresAportadosRoshJodesh;
+                valoresMostrar3=valoresAportadosTerumahYeladim;
+                valoresMostrar4=valoresAportadosTerreno;
+                valoresMostrar5=valoresAportadosShuljan;
+                valoresMostrar6=valoresAportadosTzedaqah;
+                valoresMostrar7=valoresAportadosKaparah;
+                valoresMostrar8=valoresAportadosArriendo;
+                valoresMostrar9=valoresAportadosSemanaTotal;
+                Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }
+        }
         Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
         if(valoresMostrar.length >= 1 ){
             Log.i("mostrarTransac","la longitud del arreglo mostrar es : "+ valoresMostrar.length+ " ");
