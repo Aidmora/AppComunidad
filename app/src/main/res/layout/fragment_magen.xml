@@ -1244,7 +1244,7 @@
                                             android:background="@color/black" />
 
                                         <TextView
-                                            android:id="@+id/valorIngresJulio"
+                                            android:id="@+id/valorIngresoJulio"
                                             android:text="........"
                                             android:gravity="center"
                                             android:layout_gravity="left"

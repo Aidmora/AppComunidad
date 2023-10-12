@@ -34,9 +34,11 @@ import com.example.appcomunidad.BusinessLogic.managers.IngresoSeptiembreBL;
 import com.example.appcomunidad.BusinessLogic.utilities.ValidarDatos;
 import com.example.appcomunidad.BusinessLogic.utilities.VerificarDatos;
 import com.example.appcomunidad.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class usuarioComunidadPagoDetalle extends AppCompatActivity {
     private ImageView fotoJaverInfor;
+    private FloatingActionButton botonIngresosUsuario;
     private ImageButton botonInstrucciones;
     private EditText ingresoMasserBaitHaM, ingresoRoshJodesh, ingresoTerumahYeladim, ingresoTerreno, ingresoShuljan, ingresoTzedaqah, ingresoKaparah, ingresoArriendo, ingresoFechaRegistro;
     private TextView nombreJaverInfo, apellidoJaverInfo;
@@ -70,6 +72,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
         listaMesesNP.setMinValue(0);
         listaMesesNP.setMaxValue((listaMeses.length)-1);
         listaMesesNP.setDisplayedValues(listaMeses);
+        botonIngresosUsuario.setOnClickListener(this::irIngresosDetalleUsuario);
         botonInstrucciones.setOnClickListener(this::botonInstrucciones);
         botonGuardarInfo.setOnClickListener(this::irPagoDetalleUsuario);
     }
@@ -95,6 +98,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
         ingresoMasserBaitHaM=findViewById(R.id.ingresarMasserBaitHaM);
         ingresoRoshJodesh= findViewById(R.id.ingresarRoshJodesh);
         ingresoTerumahYeladim= findViewById(R.id.ingresarTerumahYeladim);
+        botonIngresosUsuario= findViewById(R.id.botonIngresosUsuario);
         ingresoTerreno=findViewById(R.id.ingresarTerreno);
         ingresoShuljan=findViewById(R.id.ingresarShuljan);
         ingresoTzedaqah=findViewById(R.id.ingresarTzedaqah);
@@ -783,5 +787,9 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
         title.show();
 
     }
-
+    public void irIngresosDetalleUsuario(View view){
+        Intent intent= new Intent(this, InformacionDetalleUsuarioCActivity.class);
+        intent.putExtra("usuarioCom_seleccionado2",  usuarioComunidad);
+        startActivity(intent);
+    }
 }

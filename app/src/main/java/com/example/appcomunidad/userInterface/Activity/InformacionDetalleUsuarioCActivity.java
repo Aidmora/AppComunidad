@@ -106,6 +106,16 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
         usuarioComunidad= new UsuarioComunidad();
         ingresosEneroList=new ArrayList<>();
         ingresosFebreroList= new ArrayList<>();
+        ingresosMarzoList= new ArrayList<>();
+        ingresosAbrilList= new ArrayList<>();
+        ingresosMayoList= new ArrayList<>();
+        ingresosJunioList= new ArrayList<>();
+        ingresosJulioList= new ArrayList<>();
+        ingresosAgostoList= new ArrayList<>();
+        ingresosSeptiembreList = new ArrayList<>();
+        ingresosOctubreList= new ArrayList<>();
+        ingresosNoviembreList= new ArrayList<>();
+        ingresosDiciembreList= new ArrayList<>();
         ingresoFebreroBL=new IngresoFebreroBL(this);
         ingresoMarzoBL= new IngresoMarzoBL(this);
         ingresoAbrilBL= new IngresoAbrilBL(this);
@@ -260,6 +270,8 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
             }
         }else if (mesSeleccionado.trim().toLowerCase().equals("marzo")){
             Log.i("mostrarTransac","Entro al mes de Marzo");
@@ -305,6 +317,8 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
                 }
             }else if(mesSeleccionado.trim().toLowerCase().equals("abril")){
             Log.i("mostrarTransac","Entro al mes de Abril");
@@ -350,7 +364,9 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
-                }
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
+            }
         }else if(mesSeleccionado.trim().toLowerCase().equals("mayo")){
             Log.i("mostrarTransac","Entro al mes de Mayo");
             try {
@@ -395,6 +411,8 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
                 }
         }else if(mesSeleccionado.trim().toLowerCase().equals("junio")){
             Log.i("mostrarTransac","Entro al mes de Junio");
@@ -440,7 +458,9 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
-            }
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
+                }
         }else if(mesSeleccionado.trim().toLowerCase().equals("julio")){
             Log.i("mostrarTransac","Entro al mes de Julio");
             try {
@@ -485,7 +505,9 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
-            }
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
+                }
         }else if(mesSeleccionado.trim().toLowerCase().equals("agosto")){
             Log.i("mostrarTransac","Entro al mes de Agosto");
             try {
@@ -530,7 +552,9 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
-            }
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
+                }
         }else if(mesSeleccionado.trim().toLowerCase().equals("septiembre")){
             Log.i("mostrarTransac","Entro al mes de Septiembre");
             try {
@@ -575,7 +599,9 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
-            }
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
+                }
         }else if (mesSeleccionado.trim().toLowerCase().equals("octubre")){
             Log.i("mostrarTransac","Entro al mes de Octubre");
             try {
@@ -620,7 +646,9 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
-            }
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
+                }
         }else if(mesSeleccionado.trim().toLowerCase().equals("noviembre")){
             Log.i("mostrarTransac","Entro al mes de Noviembre");
             try {
@@ -665,7 +693,9 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
-            }
+                }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
+                }
         }else if(mesSeleccionado.trim().toLowerCase().equals("diciembre")){
             Log.i("mostrarTransac","Entro al mes de Diciembre");
             try {
@@ -710,6 +740,8 @@ public class InformacionDetalleUsuarioCActivity extends AppCompatActivity {
                 valoresMostrar8=valoresAportadosArriendo;
                 valoresMostrar9=valoresAportadosSemanaTotal;
                 Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
+            }else {
+                Toast.makeText(this, "No hay registros de este mes", Toast.LENGTH_SHORT).show();
             }
         }
         Log.i("mostrarTransac","la longitud del arreglo es"+ valoresMostrar.length+"");
