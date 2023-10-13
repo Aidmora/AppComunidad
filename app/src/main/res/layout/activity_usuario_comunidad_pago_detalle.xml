@@ -22,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="left"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -86,15 +85,22 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/botonIngresosUsuario"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@android:color/white"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/icon_ingresos_usuario" />
+                android:orientation="horizontal">
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/botonIngresosUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@android:color/white"
+                    android:layout_gravity="right"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/icon_ingresos_usuario" />
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

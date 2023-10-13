@@ -279,7 +279,6 @@ CREATE TABLE INGRESOS_DICIEMBRE (
     TotalSemana_D               DOUBLE                                             NOT NULL,
     CONSTRAINT FK_IdUsuarioCom_D FOREIGN KEY (IdUsuarioCom) REFERENCES USUARIO_COMUNIDAD (IdUsuarioCom)
 );
-
 -- Creación de la tabla USUARIO_CREDENCIAL
 CREATE TABLE USUARIO_CREDENCIAL (
     IdUsuario INTEGER NOT NULL,
@@ -304,7 +303,16 @@ INSERT INTO USUARIO_ROL (IdRol, Nombre)
 VALUES (1, 'Admin');
 INSERT INTO USUARIO_ROL (IdRol, Nombre)
 VALUES (2, 'Javer');
-
+CREATE TABLE USUARIO_INGRESOS_HISTORIAL (
+    IdUsuarioIngresosHistorial              INTEGER PRIMARY KEY                                 NOT NULL,
+    NombreMesIngresos                       TEXT CHECK(LENGTH(NombreMesIngresos) <= 300)                NOT NULL,
+    AñoMesIngreso                           TEXT CHECK(LENGTH(AñoMesIngreso) <= 300)                   NOT NULL,
+    NombreJaverIngreso_H                    TEXT CHECK(LENGTH(NombreJaverIngreso_H) <= 300)     NOT NULL,
+    ApellidoJaverIngreso_H                  TEXT CHECK(LENGTH(ApellidoJaverIngreso_H) <= 300)   NOT NULL,
+    CedulaJaverIngreso_H                    TEXT CHECK(LENGTH(CedulaJaverIngreso_H) <= 300),
+    SemanaFechaIngreso_H                    TEXT CHECK(LENGTH(SemanaFechaIngreso_H) <= 500)     NOT NULL,
+    Estado                                  TEXT DEFAULT '1'
+);
 
 
 INSERT INTO USUARIO_COMUNIDAD (NombreJaver, ApellidoJaver, EstadoCivil, CedulaJaver, CelularJaver, CorreoJaver, fotoJaver)

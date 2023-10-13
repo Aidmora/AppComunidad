@@ -43,6 +43,7 @@ public abstract class GestorBaseDatos extends SQLiteOpenHelper {
     protected static final String TABLA_INGRESOS_OCTUBRE="INGRESOS_OCTUBRE";
     protected static final String TABLA_INGRESOS_NOVIEMBRE="INGRESOS_NOVIEMBRE";
     protected static final String TABLA_INGRESOS_DICIEMBRE="INGRESOS_DICIEMBRE";
+    protected static final String TABLA_USUARIO_INGRESOS_HISTORIAL="USUARIO_INGRESOS_HISTORIAL";
     protected Context contexto;
     protected ContentValues valoresContenido;
     protected String consultaSQL;

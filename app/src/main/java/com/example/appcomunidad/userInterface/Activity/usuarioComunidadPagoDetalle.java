@@ -31,6 +31,7 @@ import com.example.appcomunidad.BusinessLogic.managers.IngresoMayoBL;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoNoviembreBL;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoOctubreBL;
 import com.example.appcomunidad.BusinessLogic.managers.IngresoSeptiembreBL;
+import com.example.appcomunidad.BusinessLogic.managers.UsuarioIngresosHistorialBL;
 import com.example.appcomunidad.BusinessLogic.utilities.ValidarDatos;
 import com.example.appcomunidad.BusinessLogic.utilities.VerificarDatos;
 import com.example.appcomunidad.R;
@@ -39,6 +40,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class usuarioComunidadPagoDetalle extends AppCompatActivity {
     private ImageView fotoJaverInfor;
     private FloatingActionButton botonIngresosUsuario;
+    private UsuarioIngresosHistorialBL ingresosHistorialBL;
     private ImageButton botonInstrucciones;
     private EditText ingresoMasserBaitHaM, ingresoRoshJodesh, ingresoTerumahYeladim, ingresoTerreno, ingresoShuljan, ingresoTzedaqah, ingresoKaparah, ingresoArriendo, ingresoFechaRegistro;
     private TextView nombreJaverInfo, apellidoJaverInfo;
@@ -91,6 +93,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
         ingresoOctubreBL= new IngresoOctubreBL(this);
         ingresoNoviembreBL= new IngresoNoviembreBL(this);
         ingresoDiciembreBL= new IngresoDiciembreBL(this);
+        ingresosHistorialBL= new UsuarioIngresosHistorialBL(this);
         fotoJaverInfor= findViewById(R.id.foto_javerInfo);
         nombreJaverInfo=findViewById(R.id.nombre_javerInfo);
         apellidoJaverInfo=findViewById(R.id.apellido_javerInfo);
@@ -207,6 +210,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -258,6 +262,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -309,6 +314,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -360,6 +366,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -411,6 +418,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -462,6 +470,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -513,6 +522,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -564,6 +574,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -615,6 +626,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -666,6 +678,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -717,6 +730,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
@@ -768,6 +782,7 @@ public class usuarioComunidadPagoDetalle extends AppCompatActivity {
                             ArriendoStr,
                             semanaTotal
                     );
+                    ingresosHistorialBL.insertarRegistro(listaMeses[listaMesesNP.getValue()],mesAñoStr,usuarioComunidad.getNombreJaver(),usuarioComunidad.getApellidoJaver(),usuarioComunidad.getCedula(),fechaRegistro);
                     Toast.makeText(alertaConfirmacionDatos.getContext(),"Se han guardado los datos correctamente!!",Toast.LENGTH_SHORT).show();
                     finish();
                     Intent intent= new Intent(alertaConfirmacionDatos.getContext(), InformacionDetalleUsuarioCActivity.class);
