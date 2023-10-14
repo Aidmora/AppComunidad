@@ -28,6 +28,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
         inicializarRecursos();
         botonIniciarSesion2.setOnClickListener(this::Siguiente);
+        botonRegistrarse.setOnClickListener(this::irRegistro);
     }
     private void inicializarRecursos() {
         ingresarCorreo      = findViewById(R.id.ingresarCorreo);
